@@ -1,0 +1,13 @@
+/* Mobile first */
+@custom-media --viewport-xs-up (min-width: 320px);
+@custom-media --viewport-s-up (min-width: 480px);
+@custom-media --viewport-m-up (min-width: 768px);
+@custom-media --viewport-l-up (min-width: 992px);
+@custom-media --viewport-xl-up (min-width: 1200px);
+
+/* Desktop first */
+@custom-media --viewport-xs-down (max-width: 320px);
+@custom-media --viewport-s-down (max-width: 480px);
+@custom-media --viewport-m-down (max-width: 768px);
+@custom-media --viewport-l-down (max-width: 992px);
+@custom-media --viewport-xl-down (max-width: 1200px);

@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  width: 280px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  margin-right: $spacing-m;
+  max-height: 100%;
+}

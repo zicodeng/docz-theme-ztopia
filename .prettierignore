@@ -1,0 +1,40 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Compiled output
+build
+dist
+tmp
+.docz
+
+# Dependency directories
+node_modules
+bower_components
+
+# Cache
+.cache-loader
+
+# Misc
+*.lock
+*.sh
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
+.*
+.DS_Store
+tsconfig.json
+credentials.sh
+fonts
+static
+public
+assets

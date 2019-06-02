@@ -1,0 +1,81 @@
+{
+  "name": "docz-theme-ztopia",
+  "version": "1.0.0",
+  "description": "Build awesome UI libraries with Docz and Ztopia theme",
+  "main": "index.js",
+  "resolutions": {
+    "docz/**/webpack": "4.28.4"
+  },
+  "scripts": {
+    "start": "docz dev",
+    "build-docs": "docz build",
+    "clean": "rm -rf node_modules .docz yarn.lock"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zicodeng/ztopia-ui.git"
+  },
+  "author": "Zico Deng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zicodeng/ztopia-ui/issues"
+  },
+  "homepage": "https://github.com/zicodeng/ztopia-ui#readme",
+  "keywords": [
+    "react",
+    "react-component",
+    "design",
+    "front-end",
+    "ui",
+    "library"
+  ],
+  "devDependencies": {
+    "@types/react": "^16.8.17",
+    "autoprefixer": "^9.5.1",
+    "classnames": "^2.2.6",
+    "cssnano": "^4.1.10",
+    "docz": "^1.2.0",
+    "docz-plugin-css": "^0.11.0",
+    "docz-theme-default": "^1.2.0",
+    "husky": "^2.3.0",
+    "lint-staged": "^8.1.7",
+    "normalize.css": "^8.0.1",
+    "postcss-custom-media": "^7.0.8",
+    "postcss-extend-rule": "^2.0.0",
+    "postcss-import": "^12.0.1",
+    "postcss-nested": "^4.1.2",
+    "postcss-simple-vars": "^5.0.2",
+    "prettier": "^1.17.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-hot-loader": "^4.8.8",
+    "stylelint": "^10.0.1",
+    "stylelint-config-prettier": "^5.1.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-order": "^3.0.0",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "lint-staged": {
+    "linters": {
+      "*.css": [
+        "prettier --write",
+        "stylelint --fix",
+        "git add"
+      ],
+      "*.{ts,tsx}": [
+        "prettier --write",
+        "tslint --fix",
+        "git add"
+      ],
+      "*.{md,json,js,jsx}": [
+        "prettier --write",
+        "git add"
+      ]
+    }
+  }
+}

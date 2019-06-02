@@ -1,0 +1,34 @@
+---
+name: Getting Started
+menu: Docs
+route: /docs/getting-started
+---
+
+# Getting Started
+
+## Installation
+
+```sh
+npm i ztopia-ui
+or
+yarn add ztopia-ui
+```
+
+## Usage
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import { Button } from 'ztopia-ui';
+
+const App = () => {
+  return (
+    <div className="container">
+      <Button>Clicky</Button>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```

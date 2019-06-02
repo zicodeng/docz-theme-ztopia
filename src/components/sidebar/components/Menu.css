@@ -1,0 +1,21 @@
+%item {
+  display: block;
+  transition: $transition-fast;
+}
+
+.item {
+  @extend %item;
+
+  padding: $spacing-s 30px;
+}
+
+.subitem {
+  @extend %item;
+
+  padding: $spacing-s 30px $spacing-s 60px;
+}
+
+.title {
+  display: block;
+  padding: $spacing-s 30px;
+}
