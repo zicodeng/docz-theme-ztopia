@@ -2,6 +2,8 @@ import React, { FunctionComponent, memo, useState } from 'react';
 import classNames from 'classnames/bind';
 import { Link, useConfig } from 'docz';
 
+import { useTheme } from '../../../theme';
+
 import styles from './Menu.css';
 
 const cx = classNames.bind(styles);
@@ -16,7 +18,10 @@ const MenuItem: FunctionComponent<Props> = memo(({ route, name }) => {
   const {
     themeConfig: { colors },
   } = useConfig();
+  const { theme } = useTheme();
+
   const isActive = isHovered || window.location.pathname === route;
+
   return (
     <li>
       <Link
@@ -24,10 +29,15 @@ const MenuItem: FunctionComponent<Props> = memo(({ route, name }) => {
         className={cx('subitem')}
         style={{
           borderRight: `5px solid ${
-            isActive ? colors.primary : colors.whiteDark
+            isActive
+              ? colors.primary
+              : theme === 'light'
+              ? colors.whiteDark
+              : colors.blackLight
           }`,
           color: isActive ? colors.primary : 'inherit',
           backgroundColor: isActive ? colors.primaryLight : 'inherit',
+          transition: isActive ? 'all 0.3s ease' : null,
         }}
         onMouseEnter={() => {
           setIsHovered(true);

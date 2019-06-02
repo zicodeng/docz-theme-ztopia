@@ -6,3 +6,16 @@
   align-items: center;
   grid-area: header;
 }
+
+.buttons {
+  display: flex;
+  font-size: $font-size-xl;
+  flex: 1;
+  justify-content: flex-end;
+  padding-right: 30px;
+
+  > i {
+    cursor: pointer;
+    transition: $transition-fast;
+  }
+}

@@ -33,6 +33,7 @@ input,
 textarea,
 button {
   border: 0;
+  color: inherit;
   background-color: inherit;
   outline: none;
 }

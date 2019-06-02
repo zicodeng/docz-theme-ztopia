@@ -2,6 +2,8 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames/bind';
 import { PageProps, useConfig } from 'docz';
 
+import { useTheme } from '../theme';
+
 import Header from './header/Header';
 import Sidebar from './sidebar/Sidebar';
 import styles from './Page.css';
@@ -12,11 +14,12 @@ const Page: FunctionComponent<PageProps> = ({ children }) => {
   const {
     themeConfig: { colors },
   } = useConfig();
+  const { theme } = useTheme();
   return (
     <div
       className={cx('container')}
       style={{
-        color: colors.blackDark,
+        color: theme === 'light' ? colors.blackDark : colors.whiteLight,
       }}
     >
       <Header />
@@ -24,7 +27,7 @@ const Page: FunctionComponent<PageProps> = ({ children }) => {
       <main
         className={cx('content')}
         style={{
-          backgroundColor: colors.whiteLight,
+          backgroundColor: theme === 'light' ? colors.white : colors.black,
         }}
       >
         <div>{children}</div>
