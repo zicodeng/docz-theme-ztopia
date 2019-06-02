@@ -9,7 +9,7 @@ import pkg from './package.json';
 export default {
   src: './',
   public: './public',
-  title: 'Docz Theme Ztopia',
+  title: 'Ztopia Theme',
   description: pkg.description,
   theme: path.resolve(__dirname, './src/theme.tsx'),
   typescript: true,
