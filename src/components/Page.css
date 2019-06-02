@@ -1,10 +1,12 @@
 .container {
   display: grid;
   grid-template-areas:
-    'header header header header '
+    'header header header header'
     'sidebar main main main';
+  grid-template-columns: 280px auto;
 }
 
 .content {
+  padding: 20px 60px;
   grid-area: main;
 }
