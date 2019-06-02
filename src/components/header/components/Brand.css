@@ -3,10 +3,22 @@
   width: 280px;
   height: 100%;
   align-items: center;
-  justify-content: center;
+  padding-left: 30px;
 }
 
 .logo {
   margin-right: $spacing-m;
   max-height: 100%;
+}
+
+.title-container {
+  position: relative;
+}
+
+.version {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 10px;
+  transform: translate(100%, 25%);
 }

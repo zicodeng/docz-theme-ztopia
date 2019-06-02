@@ -9,6 +9,7 @@ const cx = classNames.bind(styles);
 const Brand = () => {
   const {
     title,
+    version,
     themeConfig: { logo, colors },
   } = useConfig();
 
@@ -27,7 +28,10 @@ const Brand = () => {
         className={cx('logo')}
         style={{ width: logo.width }}
       />
-      <h3>{title}</h3>
+      <div className={cx('title-container')}>
+        <h3>{title}</h3>
+        <span className={cx('version')}>v{version}</span>
+      </div>
     </div>
   );
 };
