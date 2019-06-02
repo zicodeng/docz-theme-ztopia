@@ -12,8 +12,6 @@ const fonts = {
   'font-size-m': '16px',
   'font-size-l': '18px',
   'font-size-xl': ' 20px',
-
-  'font-family-lato': 'Lato, sans-serif',
 };
 
 const shadows = {

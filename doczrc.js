@@ -25,7 +25,8 @@ export default {
         },
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css?family=Lato',
+          href:
+            'https://fonts.googleapis.com/css?family=Lato|Oswald&display=swap',
         },
         {
           rel: 'stylesheet',

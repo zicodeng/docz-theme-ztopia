@@ -6,7 +6,18 @@ import React, {
 } from 'react';
 import { theme, ComponentsProvider } from 'docz';
 
-import { Page } from './components';
+import {
+  Link,
+  Paragraph,
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  H6,
+  InlineCode,
+  Page,
+} from './components';
 
 // Import global style
 import 'normalize.css';
@@ -30,6 +41,15 @@ const Theme: FunctionComponent = ({ children }) => {
     >
       <ComponentsProvider
         components={{
+          a: Link,
+          p: Paragraph,
+          h1: H1,
+          h2: H2,
+          h3: H3,
+          h4: H4,
+          h5: H5,
+          h6: H6,
+          inlineCode: InlineCode,
           page: Page,
         }}
       >
@@ -57,10 +77,15 @@ const defaultThemeConfig = {
     whiteLight: '#fcfcfd', // text
     white: '#F8F8F9',
     whiteDark: '#f4f4f5',
-    primaryLight: '#d9eaff',
-    primary: '#006fff',
+    primaryLight: '#d9eaff', // sidebar menu item (hovered)
+    primary: '#006fff', // brand, link
+    primaryDark: '#0058cc', // link (hovered)
     secondary: '#62ddbd',
     danger: '#ec5564',
+  },
+  fonts: {
+    body: 'Lato, sans-serif',
+    title: 'Oswald, sans-serif',
   },
   logo: {
     src: null,

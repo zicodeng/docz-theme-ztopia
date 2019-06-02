@@ -1,5 +1,13 @@
+.container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 %item {
   display: block;
+  color: inherit;
+  text-decoration: none;
 }
 
 .item {

@@ -10,9 +10,8 @@ const Brand = () => {
   const {
     title,
     version,
-    themeConfig: { logo, colors },
+    themeConfig: { logo, colors, fonts },
   } = useConfig();
-
   return (
     <div
       className={cx('container')}
@@ -21,6 +20,7 @@ const Brand = () => {
           colors.secondary
         })`,
         color: colors.whiteLight,
+        fontFamily: fonts.body,
       }}
     >
       <img
@@ -29,7 +29,13 @@ const Brand = () => {
         style={{ width: logo.width }}
       />
       <div className={cx('title-container')}>
-        <h3>{title}</h3>
+        <h3
+          style={{
+            fontFamily: fonts.title,
+          }}
+        >
+          {title}
+        </h3>
         <span className={cx('version')}>v{version}</span>
       </div>
     </div>

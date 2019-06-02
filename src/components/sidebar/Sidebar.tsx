@@ -11,13 +11,14 @@ const cx = classNames.bind(styles);
 
 const Sidebar = () => {
   const {
-    themeConfig: { colors },
+    themeConfig: { colors, fonts },
   } = useConfig();
   const { theme } = useTheme();
   return (
     <aside
       className={cx('container')}
       style={{
+        fontFamily: fonts.body,
         backgroundColor:
           theme === 'light' ? colors.whiteDark : colors.blackLight,
       }}

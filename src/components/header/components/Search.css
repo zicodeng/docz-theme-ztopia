@@ -7,11 +7,23 @@
   padding-left: 30px;
 }
 
+%ulReset {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 .input {
+  border: 0;
+  color: inherit;
+  background-color: inherit;
   margin-left: $spacing-s;
+  outline: none;
 }
 
 .result {
+  @extend %ulReset;
+
   position: absolute;
   z-index: 1;
   top: 60px;
@@ -20,9 +32,15 @@
   padding: $spacing-l 30px;
 }
 
+.submenu {
+  @extend %ulReset;
+}
+
 .item {
   display: block;
   padding: $spacing-s 0;
+  color: inherit;
+  text-decoration: none;
 
   &--sub {
     padding: $spacing-s 30px;

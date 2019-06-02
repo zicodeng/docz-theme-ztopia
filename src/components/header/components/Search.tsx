@@ -11,7 +11,7 @@ const Search = () => {
   const [query, setQuery] = useState('');
   const menus = useMenus({ query });
   const {
-    themeConfig: { colors },
+    themeConfig: { colors, fonts },
   } = useConfig();
 
   const renderResult = () => {
@@ -42,7 +42,7 @@ const Search = () => {
                   __html: highlightQuery(query, menu.name, colors.danger),
                 }}
               />
-              <ul>
+              <ul className={cx('submenu')}>
                 {submenu.map(menuItem => (
                   <li key={menuItem.id}>
                     <Link
@@ -80,7 +80,12 @@ const Search = () => {
   };
 
   return (
-    <div className={cx('container')}>
+    <div
+      className={cx('container')}
+      style={{
+        fontFamily: fonts.body,
+      }}
+    >
       <i
         className="fas fa-search"
         style={{

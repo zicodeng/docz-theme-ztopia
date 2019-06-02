@@ -7,16 +7,16 @@ import styles from './Menu.css';
 
 const cx = classNames.bind(styles);
 
-interface NestedMenu {
+interface Submenu {
   title: string;
   menu: IMenuItem[];
 }
 
-const NestedMenu: FunctionComponent<NestedMenu> = ({ title, menu }) => {
+const Submenu: FunctionComponent<Submenu> = ({ title, menu }) => {
   return (
-    <li className={cx('container')}>
+    <li>
       <span className={cx('title')}>{title}</span>
-      <ul>
+      <ul className={cx('container')}>
         {menu.map(({ id, name, route }) => (
           <MenuItem key={id} route={route} name={name} />
         ))}
@@ -25,4 +25,4 @@ const NestedMenu: FunctionComponent<NestedMenu> = ({ title, menu }) => {
   );
 };
 
-export default NestedMenu;
+export default Submenu;

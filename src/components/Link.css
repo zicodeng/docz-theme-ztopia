@@ -1,0 +1,8 @@
+.link {
+  text-decoration: none;
+  transition: $transition-fast;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
