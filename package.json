@@ -1,6 +1,6 @@
 {
   "name": "docz-theme-ztopia",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Build awesome UI libraries with Docz and Ztopia theme",
   "main": "index.js",
   "resolutions": {
