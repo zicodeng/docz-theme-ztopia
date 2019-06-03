@@ -7,6 +7,6 @@
 }
 
 .content {
-  padding: $spacing-l 60px;
+  padding: $spacing-l 60px 60px;
   grid-area: main;
 }

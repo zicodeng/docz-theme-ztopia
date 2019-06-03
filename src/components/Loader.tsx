@@ -15,7 +15,7 @@ const Loader: FunctionComponent = () => {
     <div
       key={i}
       style={{
-        background: `linear-gradient(to bottom, ${colors.primary}, ${
+        background: `linear-gradient(to top, ${colors.primary}, ${
           colors.secondary
         })`,
       }}
