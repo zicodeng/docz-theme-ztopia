@@ -54,7 +54,7 @@ export default {
   // https://github.com/pedronauck/docz/tree/master/core/docz-theme-default
   themeConfig: {
     logo: {
-      src: '/public/logo.png',
+      src: '/public/images/logo.png',
     },
   },
 };

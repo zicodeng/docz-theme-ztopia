@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames/bind';
 import { useConfig } from 'docz';
 
-import imgKitty from 'public/kitty.gif';
+import imgKitty from 'public/images/kitty.gif';
 
 import App from './App';
 import styles from './NotFound.css';

@@ -7,7 +7,6 @@
 }
 
 .content {
-  position: relative;
-  padding: $spacing-l 60px 80px 60px;
+  padding: $spacing-l 60px;
   grid-area: main;
 }
