@@ -23,6 +23,7 @@ import {
   Table,
   Page,
   NotFound,
+  Loader,
 } from './components';
 
 // Import global style
@@ -63,6 +64,7 @@ const Theme: FunctionComponent = ({ children }) => {
           table: Table,
           page: Page,
           notFound: NotFound,
+          loading: Loader,
         }}
       >
         {children}
