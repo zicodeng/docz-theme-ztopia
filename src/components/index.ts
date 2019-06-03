@@ -6,4 +6,6 @@ export { default as InlineCode } from './InlineCode';
 export { default as OrderedList } from './OrderedList';
 export { default as UnorderedList } from './UnorderedList';
 export { default as Blockquote } from './Blockquote';
+export { default as Table } from './Table';
 export { default as Page } from './Page';
+export { default as NotFound } from './NotFound';

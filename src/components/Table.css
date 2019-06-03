@@ -1,0 +1,15 @@
+.table {
+  line-height: $line-height-body;
+  border-collapse: collapse;
+
+  th {
+    padding: $spacing-s;
+    border: 1px solid currentColor;
+    text-align: center;
+  }
+
+  td {
+    padding: $spacing-s;
+    border: 1px solid currentColor;
+  }
+}

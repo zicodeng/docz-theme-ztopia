@@ -20,7 +20,9 @@ import {
   OrderedList,
   UnorderedList,
   Blockquote,
+  Table,
   Page,
+  NotFound,
 } from './components';
 
 // Import global style
@@ -58,7 +60,9 @@ const Theme: FunctionComponent = ({ children }) => {
           ol: OrderedList,
           ul: UnorderedList,
           blockquote: Blockquote,
+          table: Table,
           page: Page,
+          notFound: NotFound,
         }}
       >
         {children}
