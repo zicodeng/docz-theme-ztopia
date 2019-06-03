@@ -23,11 +23,13 @@
   "homepage": "https://github.com/zicodeng/ztopia-ui#readme",
   "keywords": [
     "react",
-    "react-component",
-    "design",
-    "front-end",
     "ui",
-    "library"
+    "docz",
+    "plugin",
+    "docs",
+    "documentation",
+    "theme",
+    "docz-theme-ztopia"
   ],
   "devDependencies": {
     "@types/react": "^16.8.17",
