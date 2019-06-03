@@ -1,0 +1,8 @@
+.quote {
+  padding: $spacing-s $spacing-l;
+  margin: $spacing-l 0;
+
+  > p {
+    margin: 0;
+  }
+}

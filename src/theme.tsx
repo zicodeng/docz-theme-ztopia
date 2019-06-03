@@ -7,7 +7,6 @@ import React, {
 import { theme, ComponentsProvider } from 'docz';
 
 import {
-  Link,
   Paragraph,
   H1,
   H2,
@@ -15,7 +14,12 @@ import {
   H4,
   H5,
   H6,
+  Link,
+  ThematicBreak,
   InlineCode,
+  OrderedList,
+  UnorderedList,
+  Blockquote,
   Page,
 } from './components';
 
@@ -41,7 +45,6 @@ const Theme: FunctionComponent = ({ children }) => {
     >
       <ComponentsProvider
         components={{
-          a: Link,
           p: Paragraph,
           h1: H1,
           h2: H2,
@@ -49,7 +52,12 @@ const Theme: FunctionComponent = ({ children }) => {
           h4: H4,
           h5: H5,
           h6: H6,
+          a: Link,
+          hr: ThematicBreak,
           inlineCode: InlineCode,
+          ol: OrderedList,
+          ul: UnorderedList,
+          blockquote: Blockquote,
           page: Page,
         }}
       >

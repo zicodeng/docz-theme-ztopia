@@ -27,9 +27,14 @@ const transitions = {
   'transition-fast': 'all 0.3s ease',
 };
 
+const lineHeights = {
+  'line-height-body': '1.5rem',
+};
+
 module.exports = {
   ...spacings,
   ...fonts,
   ...shadows,
   ...transitions,
+  ...lineHeights,
 };
