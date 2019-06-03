@@ -89,7 +89,7 @@ const defaultThemeConfig = {
     primary: '#006fff', // brand, link
     primaryDark: '#0058cc', // link (hovered)
     secondary: '#62ddbd',
-    danger: '#ec5564',
+    highlight: '#ec5564', // matched search query
   },
   fonts: {
     body: 'Lato, sans-serif',

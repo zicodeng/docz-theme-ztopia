@@ -28,7 +28,7 @@ const Search = () => {
                   to={menu.route}
                   className={cx('item')}
                   dangerouslySetInnerHTML={{
-                    __html: highlightQuery(query, menu.name, colors.danger),
+                    __html: highlightQuery(query, menu.name, colors.highlight),
                   }}
                 />
               </li>
@@ -39,7 +39,7 @@ const Search = () => {
               <span
                 className={cx('item', 'item--title')}
                 dangerouslySetInnerHTML={{
-                  __html: highlightQuery(query, menu.name, colors.danger),
+                  __html: highlightQuery(query, menu.name, colors.highlight),
                 }}
               />
               <ul className={cx('submenu')}>
@@ -52,7 +52,7 @@ const Search = () => {
                         __html: highlightQuery(
                           query,
                           menuItem.name,
-                          colors.danger,
+                          colors.highlight,
                         ),
                       }}
                     />
