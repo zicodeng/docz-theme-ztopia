@@ -1,8 +1,9 @@
 import path from 'path';
 
-import { css } from 'docz-plugin-css';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import TerserJSPlugin from 'terser-webpack-plugin';
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 
-import postcssConfig from './postcss.config';
 import pkg from './package.json';
 
 // https://www.docz.site/docs/project-configuration
@@ -14,20 +15,16 @@ export default {
   theme: path.resolve(__dirname, './src/theme.tsx'),
   typescript: true,
   notUseSpecifiers: true,
-  filterComponents: files =>
-    files.filter(file => /([^d]\.(t|j)sx?)$/.test(file)),
   htmlContext: {
     head: {
       links: [
-        {
-          rel: 'stylesheet',
-          href: 'https://codemirror.net/theme/monokai.css',
-        },
+        // Google fonts
         {
           rel: 'stylesheet',
           href:
             'https://fonts.googleapis.com/css?family=Lato|Oswald&display=swap',
         },
+        // Font Awesome
         {
           rel: 'stylesheet',
           href: 'https://use.fontawesome.com/releases/v5.8.1/css/all.css',
@@ -43,15 +40,82 @@ export default {
     { name: 'Docs', menu: ['Introduction', 'Getting Started'] },
     { name: 'Components', menu: [] },
   ],
-  plugins: [
-    css({
-      preprocessor: 'postcss',
-      cssmodules: true,
-      loaderOpts: postcssConfig,
-    }),
-  ],
-  // Customize docz-theme-default
-  // https://github.com/pedronauck/docz/tree/master/core/docz-theme-default
+  filterComponents: files =>
+    files.filter(file => /([^d]\.(t|j)sx?)$/.test(file)),
+  modifyBundlerConfig: (config, isDev) => ({
+    ...config,
+    module: {
+      ...config.module,
+      rules: [
+        ...config.module.rules,
+        // For loading user styles (using CSS modules)
+        {
+          test: /\.css$/,
+          include: [
+            path.resolve(__dirname, './src'),
+            path.resolve(__dirname, './example'),
+          ],
+          use: [
+            {
+              loader: isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                sourceMap: true,
+                modules: true,
+                localIdentName: isDev
+                  ? '[name]__[local]--[hash:base64:5]'
+                  : '[hash:base64:5]',
+              },
+            },
+            {
+              loader: 'postcss-loader',
+            },
+          ],
+        },
+        // For loading vendor styles (not using CSS modules)
+        {
+          test: /\.css$/,
+          include: [
+            path.resolve(__dirname, './node_modules/normalize.css'),
+            path.resolve(__dirname, './node_modules/codemirror'),
+          ],
+          use: [
+            {
+              loader: isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+            },
+            {
+              loader: 'css-loader',
+            },
+          ],
+        },
+      ],
+    },
+    optimization: {
+      ...config.optimization,
+      minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+      splitChunks: {
+        ...config.optimization.splitChunks,
+        cacheGroups: {
+          ...config.optimization.splitChunks.cacheGroups,
+          styles: {
+            chunks: 'all',
+            name: 'styles',
+            test: module => /(\.module)?\.css$/.test(module.type),
+            enforce: true,
+          },
+        },
+      },
+    },
+    plugins: [
+      ...config.plugins,
+      new MiniCssExtractPlugin({
+        filename: 'static/css/[name].[hash].css',
+      }),
+    ],
+  }),
   themeConfig: {
     logo: {
       src: '/public/images/logo.png',
