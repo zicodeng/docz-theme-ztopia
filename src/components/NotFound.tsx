@@ -4,7 +4,7 @@ import { useConfig } from 'docz';
 
 import imgKitty from 'public/images/kitty.gif';
 
-import App from './App';
+import Page from './Page';
 import styles from './NotFound.css';
 
 const cx = classNames.bind(styles);
@@ -14,7 +14,7 @@ const NotFound: FunctionComponent = () => {
     themeConfig: { fonts },
   } = useConfig();
   return (
-    <App>
+    <Page>
       <div className={cx('container')}>
         <div
           style={{ backgroundImage: `url('${imgKitty}')` }}
@@ -28,7 +28,7 @@ const NotFound: FunctionComponent = () => {
           What are you looking for??? kitty
         </h2>
       </div>
-    </App>
+    </Page>
   );
 };
 
