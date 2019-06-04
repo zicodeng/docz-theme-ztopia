@@ -8,6 +8,7 @@ export { default as OrderedList } from './OrderedList';
 export { default as UnorderedList } from './UnorderedList';
 export { default as Blockquote } from './Blockquote';
 export { default as Table } from './Table';
+export { default as Props } from './Props';
 export { default as Page } from './Page';
 export { default as NotFound } from './NotFound';
 export { default as Loader } from './Loader';
