@@ -90,11 +90,12 @@ const defaultThemeConfig = {
   codemirrorTheme: 'monokai',
   colors: {
     blackLight: '#242635',
-    black: '#151725',
+    black: '#151725', // page background (dark)
     blackDark: '#0e1019', // text
     whiteLight: '#fcfcfd', // text
-    white: '#F8F8F9',
+    white: '#F8F8F9', // page background (light)
     whiteDark: '#f4f4f5',
+    grey: '#c0c5ce', // table border
     primaryLight: '#d9eaff', // sidebar menu item (hovered)
     primary: '#006fff', // brand, link
     primaryDark: '#0058cc', // link (hovered)
