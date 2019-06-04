@@ -1,0 +1,39 @@
+.container {
+  position: relative;
+  line-height: $line-height-code;
+  flex: 1;
+
+  pre {
+    font-family: $font-family-code;
+    font-size: 85%;
+  }
+
+  :global {
+    .CodeMirror {
+      height: auto;
+      max-width: 100%;
+    }
+
+    .CodeMirror-scroll {
+      overflow: scroll;
+      max-height: 500px;
+    }
+
+    .CodeMirror-gutters {
+      left: 2px;
+    }
+
+    .CodeMirror-lines {
+      box-sizing: content-box;
+      padding: 10px 0;
+    }
+
+    .CodeMirror-line {
+      padding: 0 10px;
+    }
+
+    .CodeMirror-linenumber {
+      padding: 0 8px;
+    }
+  }
+}

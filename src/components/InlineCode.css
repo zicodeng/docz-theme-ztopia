@@ -1,6 +1,6 @@
 .code {
   padding: 4px 6px;
-  font-family: 'Source Code Pro', Menlo, monospace;
+  font-family: $font-family-code;
   font-size: 85%;
   border-radius: 4px;
 }

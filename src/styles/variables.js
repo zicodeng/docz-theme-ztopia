@@ -12,6 +12,8 @@ const fonts = {
   'font-size-m': '16px',
   'font-size-l': '18px',
   'font-size-xl': ' 20px',
+
+  'font-family-code': 'Source Code Pro, Menlo, monospace;',
 };
 
 const shadows = {
@@ -29,6 +31,7 @@ const transitions = {
 
 const lineHeights = {
   'line-height-body': '1.5rem',
+  'line-height-code': '1.3rem',
 };
 
 module.exports = {

@@ -1,5 +1,6 @@
 .container {
   position: sticky;
+  z-index: 99;
   top: 0;
   display: flex;
   height: 60px;
