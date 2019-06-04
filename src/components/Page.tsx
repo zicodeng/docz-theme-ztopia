@@ -4,8 +4,8 @@ import { PageProps, useConfig } from 'docz';
 
 import { useTheme } from '../theme';
 
-import Header from './header/Header';
-import Sidebar from './sidebar/Sidebar';
+import Header from './Header';
+import Sidebar from './Sidebar';
 import styles from './Page.css';
 
 const cx = classNames.bind(styles);
