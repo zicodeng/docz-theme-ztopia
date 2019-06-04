@@ -61,9 +61,9 @@
   },
   "include": [
     "./src/**/*",
-    "./test/**/*",
+    "./example/**/*",
     "./public/**/*",
-    "./typings/**/*", "test/components"
+    "./typings/**/*",
   ],
   "exclude": [
     "node_modules",
