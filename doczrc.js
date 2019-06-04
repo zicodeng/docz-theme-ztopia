@@ -8,12 +8,12 @@ import pkg from './package.json';
 
 // https://www.docz.site/docs/project-configuration
 export default {
-  src: './',
+  src: './example',
   public: './public',
   title: 'Ztopia Theme',
   description: pkg.description,
-  theme: path.resolve(__dirname, './src/theme.tsx'),
-  typescript: true,
+  theme: path.resolve(__dirname, './dist'),
+  typescript: false,
   notUseSpecifiers: true,
   htmlContext: {
     head: {
@@ -51,10 +51,7 @@ export default {
         // For loading user styles (using CSS modules)
         {
           test: /\.css$/,
-          include: [
-            path.resolve(__dirname, './src'),
-            path.resolve(__dirname, './example'),
-          ],
+          include: [path.resolve(__dirname, './example')],
           use: [
             {
               loader: isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -78,10 +75,7 @@ export default {
         // For loading vendor styles (not using CSS modules)
         {
           test: /\.css$/,
-          include: [
-            path.resolve(__dirname, './node_modules/normalize.css'),
-            path.resolve(__dirname, './node_modules/codemirror'),
-          ],
+          include: [],
           use: [
             {
               loader: isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
