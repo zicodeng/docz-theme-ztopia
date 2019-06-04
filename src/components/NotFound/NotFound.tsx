@@ -2,10 +2,10 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames/bind';
 import { useConfig } from 'docz';
 
-import imgKitty from 'public/images/kitty.gif';
+import Page from '../Page';
 
-import Page from './Page';
 import styles from './NotFound.css';
+import imgNotFound from './not-found.gif';
 
 const cx = classNames.bind(styles);
 
@@ -17,7 +17,7 @@ const NotFound: FunctionComponent = () => {
     <Page>
       <div className={cx('container')}>
         <div
-          style={{ backgroundImage: `url('${imgKitty}')` }}
+          style={{ backgroundImage: `url('${imgNotFound}')` }}
           className={cx('image')}
         />
         <h2

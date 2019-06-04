@@ -2,8 +2,9 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames/bind';
 import { PropsComponentProps, useConfig } from 'docz';
 
+import { useTheme } from '../theme';
+
 import styles from './Props.css';
-import { useTheme } from 'src/theme';
 
 const cx = classNames.bind(styles);
 
@@ -12,6 +13,7 @@ const Props: FunctionComponent<PropsComponentProps> = ({ props }) => {
     themeConfig: { fonts, colors },
   } = useConfig();
   const { theme } = useTheme();
+  console.log(props);
   return (
     <table
       className={cx('table')}
