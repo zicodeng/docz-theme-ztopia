@@ -4,6 +4,8 @@ import { PropsComponentProps, useConfig } from 'docz';
 
 import { useTheme } from '../theme';
 
+import InlineCode from './InlineCode';
+import PreformattedText from './PreformattedText';
 import styles from './Props.css';
 
 const cx = classNames.bind(styles);
@@ -13,7 +15,24 @@ const Props: FunctionComponent<PropsComponentProps> = ({ props }) => {
     themeConfig: { fonts, colors },
   } = useConfig();
   const { theme } = useTheme();
+
   console.log(props);
+
+  const renderDefaultValue = (type, defaultValue) => {
+    if (!defaultValue) {
+      return '-';
+    }
+
+    const { value } = defaultValue;
+
+    if (type === 'element') {
+      return 'Element';
+      return <PreformattedText>{value}</PreformattedText>;
+    }
+
+    return <InlineCode>{value}</InlineCode>;
+  };
+
   return (
     <table
       className={cx('table')}
@@ -46,7 +65,7 @@ const Props: FunctionComponent<PropsComponentProps> = ({ props }) => {
             >
               <td style={{ color: colors.primary }}>{name}</td>
               <td>{type.name}</td>
-              <td>{defaultValue ? defaultValue : '-'}</td>
+              <td>{renderDefaultValue(type.name, defaultValue)}</td>
               <td>{required ? 'true' : 'false'}</td>
               <td className={cx('desc')}>{description}</td>
             </tr>
