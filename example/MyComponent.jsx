@@ -57,6 +57,8 @@ MyComponent.propTypes = {
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.number,
   }),
+  /** PropTypes.any:  A value of any data type */
+  any: PropTypes.any,
 };
 
 MyComponent.defaultProps = {
@@ -75,6 +77,7 @@ MyComponent.defaultProps = {
   arrayOf: [1, 2, 3],
   objectOf: { firstName: 'Zico', lastName: 'Deng' },
   objectWithShape: { firstName: 'Zico', lastName: 'Deng' },
+  any: 'I can be anything :)',
 };
 
 export default MyComponent;
