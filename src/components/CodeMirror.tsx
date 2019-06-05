@@ -49,11 +49,16 @@ const getLanguage = children => {
 
 interface Props {
   className?: string;
+  language?: string;
 }
 
-const CodeMirror: FunctionComponent<Props> = ({ className, children }) => {
+const CodeMirror: FunctionComponent<Props> = ({
+  className,
+  language = 'jsx',
+  children,
+}) => {
   const initialValue = getChildren(children);
-  const language = getLanguage(children);
+  const mode = language || getLanguage(children);
 
   const [value, setValue] = useState(initialValue);
 
@@ -87,7 +92,7 @@ const CodeMirror: FunctionComponent<Props> = ({ className, children }) => {
         matchBrackets: true,
         readOnly: true,
         theme: 'monokai',
-        mode: language,
+        mode,
       }}
     />
   );

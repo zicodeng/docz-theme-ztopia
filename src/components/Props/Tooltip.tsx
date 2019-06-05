@@ -22,7 +22,9 @@ const Tooltip: FunctionComponent<Props> = ({ label, value }) => {
       <span className={cx('label')} style={{ color: colors.secondary }}>
         {label}
       </span>
-      <CodeMirror className={cx('value')}>{value}</CodeMirror>
+      <CodeMirror className={cx('value')} language="text/typescript">
+        {value}
+      </CodeMirror>
     </div>
   );
 };

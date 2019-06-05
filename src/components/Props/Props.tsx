@@ -13,7 +13,7 @@ import styles from './Props.css';
 const cx = classNames.bind(styles);
 
 const parseShape = value => {
-  let code = 'interface Value {';
+  let code = 'interface Shape {';
   Object.entries(value).forEach(([key, { required, name }]: [string, any]) => {
     // Use TypeScript way to express un/required prop
     // For example:
