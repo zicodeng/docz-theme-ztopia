@@ -9,6 +9,7 @@ import { terser } from 'rollup-plugin-terser';
 import chalk from 'chalk';
 
 import pkg from './package.json';
+import clean from './scripts/rollup-plugin-clean';
 
 const NODE_ENV = process.env.NODE_ENV;
 const isDev = NODE_ENV === 'development';
@@ -28,6 +29,7 @@ export default {
     console.warn(`(!) ${warning.message}`);
   },
   plugins: [
+    clean('dist'),
     replace({
       'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
     }),
