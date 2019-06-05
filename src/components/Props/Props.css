@@ -1,0 +1,31 @@
+.table {
+  width: 100%;
+  line-height: $line-height-body;
+  border-collapse: collapse;
+
+  thead {
+    text-align: left;
+  }
+
+  th {
+    padding: $spacing-m;
+  }
+
+  td {
+    padding: $spacing-m;
+
+    &.type {
+      max-width: 200px;
+    }
+
+    &.default-value {
+      max-width: 300px;
+    }
+
+    &.desc {
+      max-width: 500px;
+      min-width: 300px;
+      word-wrap: break-word;
+    }
+  }
+}
