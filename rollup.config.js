@@ -5,6 +5,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
 import url from 'rollup-plugin-url';
 import tslint from 'rollup-plugin-tslint';
+import progress from 'rollup-plugin-progress';
 import { terser } from 'rollup-plugin-terser';
 import chalk from 'chalk';
 
@@ -59,6 +60,7 @@ export default {
           : '[hash:base64:5]',
       },
     }),
+    progress({}),
     tslint({
       configuration: './tslint.json',
       include: [/\*.tsx?/],
