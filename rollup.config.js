@@ -9,7 +9,6 @@ import progress from 'rollup-plugin-progress';
 import { terser } from 'rollup-plugin-terser';
 import chalk from 'chalk';
 
-import pkg from './package.json';
 import clean from './scripts/rollup-plugin-clean';
 
 const NODE_ENV = process.env.NODE_ENV;
@@ -22,7 +21,8 @@ const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 export default {
   input: './src/theme.tsx',
   output: { file: './dist/index.js', format: 'esm' },
-  external: Object.keys(pkg.peerDependencies),
+  external: id =>
+    !id.startsWith('.') && !id.startsWith('/') && !id.endsWith('css'),
   onwarn: warning => {
     if (warning.code === 'CIRCULAR_DEPENDENCY') {
       return;
