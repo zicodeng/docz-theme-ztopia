@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, FunctionComponent } from 'react';
 import classNames from 'classnames/bind';
 import { get } from 'lodash-es';
 import { Controlled as BaseCodeMirror } from 'react-codemirror2';
@@ -47,7 +47,11 @@ const getLanguage = children => {
   return language;
 };
 
-const CodeMirror = ({ children }) => {
+interface Props {
+  className?: string;
+}
+
+const CodeMirror: FunctionComponent<Props> = ({ className, children }) => {
   const initialValue = getChildren(children);
   const language = getLanguage(children);
 
@@ -70,7 +74,7 @@ const CodeMirror = ({ children }) => {
   return (
     <BaseCodeMirror
       value={value}
-      className={cx('container')}
+      className={cx(className, 'container')}
       editorDidMount={editor => {
         removeLastLine(editor);
       }}

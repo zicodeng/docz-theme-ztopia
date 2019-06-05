@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames/bind';
 import { PropsComponentProps, useConfig } from 'docz';
-// import prettier from 'prettier/standalone';
-// import parserTS from 'prettier/parser-typescript';
+import prettier from 'prettier/standalone';
+import parserTS from 'prettier/parser-typescript';
 
 import { useTheme } from '../../theme';
 import InlineCode from '../InlineCode';
@@ -12,22 +12,22 @@ import styles from './Props.css';
 
 const cx = classNames.bind(styles);
 
-// const parseShape = value => {
-//   let code = 'interface Value {';
-//   Object.entries(value).forEach(([key, { required, name }]: [string, any]) => {
-//     // Use TypeScript way to express un/required prop
-//     // For example:
-//     // If required,     name: string
-//     // If not required, name?: string,
-//     code += `${key}${!required && '?'}: ${name};`;
-//   });
-//   code += '}';
-//   const formattedCode = prettier.format(code, {
-//     parser: 'typescript',
-//     plugins: [parserTS],
-//   });
-//   return formattedCode;
-// };
+const parseShape = value => {
+  let code = 'interface Value {';
+  Object.entries(value).forEach(([key, { required, name }]: [string, any]) => {
+    // Use TypeScript way to express un/required prop
+    // For example:
+    // If required,     name: string
+    // If not required, name?: string,
+    code += `${key}${required ? '' : '?'}: ${name};`;
+  });
+  code += '}';
+  const formattedCode = prettier.format(code, {
+    parser: 'typescript',
+    plugins: [parserTS],
+  });
+  return formattedCode;
+};
 
 const Props: FunctionComponent<PropsComponentProps> = ({ props }) => {
   const {
@@ -58,8 +58,7 @@ const Props: FunctionComponent<PropsComponentProps> = ({ props }) => {
       return `{key: ${value.name}}`;
     }
     if (name === 'shape') {
-      // parseShape(value);
-      // return <Tooltip label="Shape" value={parseShape(value)} />;
+      return <Tooltip label="Shape" value={parseShape(value)} />;
     }
   };
 

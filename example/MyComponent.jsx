@@ -54,7 +54,7 @@ MyComponent.propTypes = {
   objectOf: PropTypes.objectOf(PropTypes.string),
   /** PropTypes.shape: an object taking on a particular shape */
   objectWithShape: PropTypes.shape({
-    firstName: PropTypes.string,
+    firstName: PropTypes.string.isRequired,
     lastName: PropTypes.number,
   }),
 };
