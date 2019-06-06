@@ -87,7 +87,7 @@ const CodeMirror: FunctionComponent<Props> = ({
       options={{
         tabSize: 2,
         lineNumbers: true,
-        lineWrapping: true,
+        lineWrapping: false,
         autoCloseTags: true,
         matchBrackets: true,
         readOnly: true,

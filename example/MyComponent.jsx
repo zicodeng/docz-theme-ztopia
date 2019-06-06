@@ -50,12 +50,46 @@ MyComponent.propTypes = {
   ]),
   /** PropTypes.arrayOf: an array of a certain type */
   arrayOf: PropTypes.arrayOf(PropTypes.number),
+  arrayOfShape: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      geolocation: PropTypes.shape({
+        longitude: PropTypes.number,
+        latitude: PropTypes.number,
+      }),
+      zipCode: PropTypes.number,
+      state: PropTypes.string,
+      country: PropTypes.string,
+    }),
+  ),
   /** PropTypes.objectOf: an object with property values of a certain type */
   objectOf: PropTypes.objectOf(PropTypes.string),
   /** PropTypes.shape: an object taking on a particular shape */
   objectWithShape: PropTypes.shape({
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.number,
+  }),
+  /** Complex shape: nested shape */
+  objectWithComplexShape: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(['organization', 'company']).isRequired,
+    members: PropTypes.arrayOf(
+      PropTypes.shape({
+        address: PropTypes.shape({
+          name: PropTypes.string,
+          geolocation: PropTypes.shape({
+            longitude: PropTypes.number,
+            latitude: PropTypes.number,
+          }),
+          zipCode: PropTypes.number,
+          state: PropTypes.string,
+          country: PropTypes.string,
+        }),
+        name: PropTypes.string,
+        age: PropTypes.number,
+        gender: PropTypes.oneOf(['male', 'female', 'neutral']),
+      }),
+    ),
   }),
   /** PropTypes.any:  A value of any data type */
   any: PropTypes.any,
@@ -75,8 +109,10 @@ MyComponent.defaultProps = {
   enum: 'red',
   union: 100,
   arrayOf: [1, 2, 3],
+  arrayOfShape: null,
   objectOf: { firstName: 'Zico', lastName: 'Deng' },
   objectWithShape: { firstName: 'Zico', lastName: 'Deng' },
+  objectWithComplexShape: null,
   any: 'I can be anything :)',
 };
 
