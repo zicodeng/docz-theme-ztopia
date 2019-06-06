@@ -67,7 +67,10 @@ const CodeMirror: FunctionComponent<Props> = ({
       return;
     }
     const lastLine = editor.lastLine();
-    editor.doc.replaceRange('', { line: lastLine - 1 }, { line: lastLine });
+    const lastLineValue = editor.getLine(lastLine);
+    if (!lastLineValue) {
+      editor.doc.replaceRange('', { line: lastLine - 1 }, { line: lastLine });
+    }
   };
   const handleBeforeChange = useCallback(
     (_editor, _data, value) => {
