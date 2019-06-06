@@ -93,6 +93,8 @@ MyComponent.propTypes = {
   }),
   /** PropTypes.any:  A value of any data type */
   any: PropTypes.any,
+  /** Description can have inline code like this: `Hello, World!` or `() => void` */
+  parsedDescription: PropTypes.string,
 };
 
 MyComponent.defaultProps = {
@@ -114,6 +116,7 @@ MyComponent.defaultProps = {
   objectWithShape: { firstName: 'Zico', lastName: 'Deng' },
   objectWithComplexShape: null,
   any: 'I can be anything :)',
+  parsedDescription: 'Look right, my description field',
 };
 
 export default MyComponent;

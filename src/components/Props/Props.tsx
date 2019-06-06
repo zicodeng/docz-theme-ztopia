@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, Fragment } from 'react';
 import classNames from 'classnames/bind';
 import { PropsComponentProps, useConfig } from 'docz';
 
@@ -10,13 +10,32 @@ import styles from './Props.css';
 
 const cx = classNames.bind(styles);
 
+const renderDesc = (desc?: string): JSX.Element[] | string => {
+  if (!desc) {
+    return '';
+  }
+
+  const regex = /`.*?`/g;
+  const fragments = desc.split(regex).filter(text => text.length);
+  const matched = desc.match(regex);
+
+  if (!matched) {
+    return desc;
+  }
+
+  return fragments.map((fragment, i) => (
+    <Fragment key={i}>
+      {fragment}
+      <InlineCode>{matched[i].replace(/`/g, '')}</InlineCode>
+    </Fragment>
+  ));
+};
+
 const Props: FunctionComponent<PropsComponentProps> = ({ props }) => {
   const {
     themeConfig: { fonts, colors },
   } = useConfig();
   const { theme } = useTheme();
-
-  console.log(props)
 
   return (
     <table
@@ -60,7 +79,7 @@ const Props: FunctionComponent<PropsComponentProps> = ({ props }) => {
                 )}
               </td>
               <td>{required ? 'true' : 'false'}</td>
-              <td className={cx('desc')}>{description}</td>
+              <td className={cx('desc')}>{renderDesc(description)}</td>
             </tr>
           ),
         )}
