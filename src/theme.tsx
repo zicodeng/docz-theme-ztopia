@@ -22,10 +22,10 @@ import {
   UnorderedList,
   Blockquote,
   Table,
+  Loader,
   Props,
   Page,
   NotFound,
-  Loader,
 } from './components';
 
 // Import global style
@@ -65,10 +65,10 @@ const Theme: FunctionComponent = ({ children }) => {
           ul: UnorderedList,
           blockquote: Blockquote,
           table: Table,
+          loading: Loader,
           props: Props,
           page: Page,
           notFound: NotFound,
-          loading: Loader,
         }}
       >
         {children}
