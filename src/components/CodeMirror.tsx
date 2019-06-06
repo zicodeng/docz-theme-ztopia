@@ -48,16 +48,28 @@ const getLanguage = children => {
 };
 
 interface Props {
+  readOnly?: boolean;
   className?: string;
   language?: string;
+  code?: string;
+  onChange?: (value: string) => void;
 }
 
 const CodeMirror: FunctionComponent<Props> = ({
+  readOnly = true,
   className,
   language = 'jsx',
+  code,
+  onChange,
   children,
 }) => {
-  const initialValue = getChildren(children);
+  if (!readOnly && (!onChange || !code)) {
+    throw new Error(
+      'Prop onChange and code are required when readOnly is set to false',
+    );
+  }
+
+  const initialValue = getChildren(children) as string;
   const mode = language || getLanguage(children);
 
   const [value, setValue] = useState(initialValue);
@@ -74,14 +86,18 @@ const CodeMirror: FunctionComponent<Props> = ({
   };
   const handleBeforeChange = useCallback(
     (_editor, _data, value) => {
-      setValue(value);
+      if (onChange) {
+        onChange(value);
+      } else {
+        setValue(value);
+      }
     },
     [value],
   );
 
   return (
     <BaseCodeMirror
-      value={value}
+      value={readOnly ? value : (code as string)}
       className={cx(className, 'container')}
       editorDidMount={editor => {
         removeLastLine(editor);
@@ -93,7 +109,7 @@ const CodeMirror: FunctionComponent<Props> = ({
         lineWrapping: false,
         autoCloseTags: true,
         matchBrackets: true,
-        readOnly: true,
+        readOnly,
         theme: 'monokai',
         mode,
       }}
