@@ -3,6 +3,9 @@ const path = require('path');
 module.exports = {
   plugins: [
     require('postcss-import'),
+    require('postcss-import-url')({
+      modernBrowser: true,
+    }),
     require('postcss-simple-vars')({
       variables: require('./src/styles/variables'),
     }),
@@ -12,6 +15,6 @@ module.exports = {
     require('postcss-nested'),
     require('postcss-extend-rule'),
     require('autoprefixer'),
-    require('cssnano')({}),
+    require('cssnano'),
   ],
 };

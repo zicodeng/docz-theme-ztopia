@@ -60,7 +60,7 @@ export default {
         // For loading vendor styles (not using CSS modules)
         {
           test: /\.css$/,
-          include: [/node_modules/],
+          include: [],
           use: [
             {
               loader: isDev ? 'style-loader' : MiniCssExtractPlugin.loader,

@@ -1,5 +1,3 @@
-import path from 'path';
-
 import replace from 'rollup-plugin-replace';
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
@@ -24,7 +22,7 @@ export default {
   input: './src/theme.tsx',
   output: { file: './dist/index.js', format: 'esm' },
   external: id =>
-    !id.startsWith('.') && !id.startsWith('/') && !id.endsWith('css'),
+    !id.startsWith('.') && !id.startsWith('/') && !id.endsWith('css'), // don't treat vendor CSS as external
   onwarn: warning => {
     if (warning.code === 'CIRCULAR_DEPENDENCY') {
       return;
@@ -40,14 +38,6 @@ export default {
       extensions,
     }),
     url({
-      include: [
-        '**/*.svg',
-        '**/*.png',
-        '**/*.gif',
-        '**/*.jpg',
-        '**/*.woff',
-        '**/*.woff2',
-      ],
       emitFiles: false,
       limit: 5000 * 1024, // 5Mb
     }),

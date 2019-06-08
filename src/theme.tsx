@@ -9,6 +9,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faLightbulb as fasLightbulb,
   faSearch,
+  faCode,
 } from '@fortawesome/free-solid-svg-icons';
 import { faLightbulb as farLightbulb } from '@fortawesome/free-regular-svg-icons';
 
@@ -35,16 +36,12 @@ import {
   NotFound,
 } from './components';
 
-// Import fonts
-import 'typeface-lato';
-import 'typeface-oswald';
-
 // Import global style
 import 'normalize.css';
 import './styles/global.css';
 
 // Initialize font awesome
-library.add(fasLightbulb, farLightbulb, faSearch);
+library.add(fasLightbulb, farLightbulb, faSearch, faCode);
 
 export const ThemeContext = createContext({
   theme: 'light',
