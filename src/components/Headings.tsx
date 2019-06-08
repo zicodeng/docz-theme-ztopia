@@ -11,7 +11,6 @@ export const H1: FunctionComponent = props => {
       style={{
         fontFamily: fonts.title,
         color: colors.primary,
-        fontWeight: 500,
       }}
     />
   );
@@ -26,7 +25,6 @@ export const H2: FunctionComponent = props => {
       {...props}
       style={{
         fontFamily: fonts.title,
-        fontWeight: 500,
       }}
     />
   );
@@ -41,7 +39,6 @@ export const H3: FunctionComponent = props => {
       {...props}
       style={{
         fontFamily: fonts.title,
-        fontWeight: 500,
       }}
     />
   );
@@ -56,7 +53,6 @@ export const H4: FunctionComponent = props => {
       {...props}
       style={{
         fontFamily: fonts.title,
-        fontWeight: 500,
       }}
     />
   );
@@ -71,7 +67,6 @@ export const H5: FunctionComponent = props => {
       {...props}
       style={{
         fontFamily: fonts.title,
-        fontWeight: 500,
       }}
     />
   );
@@ -86,7 +81,6 @@ export const H6: FunctionComponent = props => {
       {...props}
       style={{
         fontFamily: fonts.title,
-        fontWeight: 500,
       }}
     />
   );
