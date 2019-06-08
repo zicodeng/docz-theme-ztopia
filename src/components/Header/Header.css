@@ -15,7 +15,7 @@
   justify-content: flex-end;
   padding-right: 30px;
 
-  > i {
+  > svg {
     cursor: pointer;
     transition: $transition-fast;
   }

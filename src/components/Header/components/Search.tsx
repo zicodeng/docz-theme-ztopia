@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import { useMenus, useConfig, Link } from 'docz';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import styles from './Search.css';
 
@@ -105,8 +106,8 @@ const Search = () => {
         fontFamily: fonts.body,
       }}
     >
-      <i
-        className="fas fa-search"
+      <FontAwesomeIcon
+        icon="search"
         style={{
           color: colors.primary,
         }}

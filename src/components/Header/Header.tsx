@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useState } from 'react';
 import className from 'classnames/bind';
 import { useConfig } from 'docz';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useTheme } from '../../theme';
 
@@ -27,8 +28,8 @@ const Header: FunctionComponent = () => {
       <Brand />
       <Search />
       <div className={cx('buttons')}>
-        <i
-          className={cx('fa-lightbulb', theme === 'light' ? 'far' : 'fas')}
+        <FontAwesomeIcon
+          icon={[theme === 'light' ? 'far' : 'fas', 'lightbulb']}
           style={{
             color: isHovered ? colors.primary : 'inherit',
           }}

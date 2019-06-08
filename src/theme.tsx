@@ -5,6 +5,12 @@ import React, {
   useContext,
 } from 'react';
 import { theme, ComponentsProvider } from 'docz';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faLightbulb as fasLightbulb,
+  faSearch,
+} from '@fortawesome/free-solid-svg-icons';
+import { faLightbulb as farLightbulb } from '@fortawesome/free-regular-svg-icons';
 
 import {
   Paragraph,
@@ -36,6 +42,9 @@ import 'typeface-oswald';
 // Import global style
 import 'normalize.css';
 import './styles/global.css';
+
+// Initialize font awesome
+library.add(fasLightbulb, farLightbulb, faSearch);
 
 export const ThemeContext = createContext({
   theme: 'light',
