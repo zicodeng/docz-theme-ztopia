@@ -34,6 +34,7 @@
     "docz theme"
   ],
   "dependencies": {
+    "buble": "^0.19.7",
     "chalk": "^2.4.2",
     "classnames": "^2.2.6",
     "codemirror": "^5.47.0",
@@ -42,9 +43,11 @@
     "normalize.css": "^8.0.1",
     "prettier": "^1.17.1",
     "prop-types": "^15.7.2",
+    "re-resizable": "^5.0.0",
     "react": "^16.8.6",
     "react-codemirror2": "^6.0.0",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-frame-component": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

@@ -7,8 +7,8 @@ const dog = new Pet();
 /**
  * This component is used to showcase all possible prop types
  */
-const MyComponent = () => {
-  return <div>MyComponent</div>;
+const MyComponent = ({ children }) => {
+  return <div>{children}</div>;
 };
 
 MyComponent.propTypes = {

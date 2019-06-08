@@ -63,7 +63,7 @@ const CodeMirror: FunctionComponent<Props> = ({
   onChange,
   children,
 }) => {
-  if (!readOnly && (!onChange || !code)) {
+  if (!readOnly && (!onChange || typeof code === 'undefined' || code == null)) {
     throw new Error(
       'Prop onChange and code are required when readOnly is set to false',
     );

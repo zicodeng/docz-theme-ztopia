@@ -10,5 +10,6 @@ export { default as Blockquote } from './Blockquote';
 export { default as Table } from './Table';
 export { default as Loader } from './Loader';
 export { default as Props } from './Props';
+export { default as Playground } from './Playground';
 export { default as Page } from './Page';
 export { default as NotFound } from './NotFound';

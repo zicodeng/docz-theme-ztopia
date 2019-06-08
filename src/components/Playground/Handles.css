@@ -1,0 +1,36 @@
+.container {
+  position: relative;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  border-style: solid;
+  border-width: 0;
+  justify-content: center;
+}
+
+.bars {
+  position: absolute;
+  display: flex;
+
+  &--right {
+    flex-direction: row;
+  }
+
+  &--bottom {
+    flex-direction: column;
+  }
+}
+
+.bar {
+  margin: 2px;
+
+  &--right {
+    width: 2px;
+    height: 25px;
+  }
+
+  &--bottom {
+    width: 25px;
+    height: 2px;
+  }
+}

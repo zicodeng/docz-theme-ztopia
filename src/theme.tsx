@@ -24,6 +24,7 @@ import {
   Table,
   Loader,
   Props,
+  Playground,
   Page,
   NotFound,
 } from './components';
@@ -67,6 +68,7 @@ const Theme: FunctionComponent = ({ children }) => {
           table: Table,
           loading: Loader,
           props: Props,
+          playground: Playground,
           page: Page,
           notFound: NotFound,
         }}
@@ -89,13 +91,13 @@ const defaultThemeConfig = {
    */
   codemirrorTheme: 'monokai',
   colors: {
-    blackLight: '#242635',
+    blackLight: '#242635', // sidebar background (dark), table header background (dark), preview handle background (dark)
     black: '#151725', // page background (dark)
     blackDark: '#0e1019', // text
     whiteLight: '#fcfcfd', // text
     white: '#F8F8F9', // page background (light)
-    whiteDark: '#f4f4f5',
-    grey: '#c0c5ce', // table border
+    whiteDark: '#f4f4f5', // sidebar background (light), table header background (light), preview handle background (light)
+    grey: '#c6cad2', // table border, preview border, preview handle bars
     primaryLight: '#d9eaff', // sidebar menu item (hovered)
     primary: '#006fff', // brand, link
     primaryDark: '#0058cc', // link (hovered)
