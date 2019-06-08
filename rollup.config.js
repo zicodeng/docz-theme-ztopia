@@ -1,3 +1,5 @@
+import path from 'path';
+
 import replace from 'rollup-plugin-replace';
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
@@ -38,6 +40,14 @@ export default {
       extensions,
     }),
     url({
+      include: [
+        '**/*.svg',
+        '**/*.png',
+        '**/*.gif',
+        '**/*.jpg',
+        '**/*.woff',
+        '**/*.woff2',
+      ],
       emitFiles: false,
       limit: 5000 * 1024, // 5Mb
     }),
@@ -54,6 +64,7 @@ export default {
     }),
     postcss({
       modules: {
+        // CSS files that should not be transpiled and converted to CSS modules
         globalModulePaths: [/node_modules/],
         generateScopedName: isDev
           ? '[name]__[local]--[hash:base64:5]'

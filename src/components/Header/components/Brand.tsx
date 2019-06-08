@@ -2,6 +2,8 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import { useConfig } from 'docz';
 
+import { H3 } from '../../Headings';
+
 import styles from './Brand.css';
 
 const cx = classNames.bind(styles);
@@ -29,13 +31,7 @@ const Brand = () => {
         style={{ width: logo.width }}
       />
       <div className={cx('title-container')}>
-        <h3
-          style={{
-            fontFamily: fonts.title,
-          }}
-        >
-          {title}
-        </h3>
+        <H3>{title}</H3>
         <span className={cx('version')}>v{version}</span>
       </div>
     </div>

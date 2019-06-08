@@ -29,6 +29,10 @@ import {
   NotFound,
 } from './components';
 
+// Import fonts
+import 'typeface-lato';
+import 'typeface-oswald';
+
 // Import global style
 import 'normalize.css';
 import './styles/global.css';

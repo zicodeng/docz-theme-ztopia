@@ -18,12 +18,6 @@ export default {
   htmlContext: {
     head: {
       links: [
-        // Google fonts
-        {
-          rel: 'stylesheet',
-          href:
-            'https://fonts.googleapis.com/css?family=Lato|Oswald&display=swap',
-        },
         // Font Awesome
         {
           rel: 'stylesheet',
@@ -75,7 +69,7 @@ export default {
         // For loading vendor styles (not using CSS modules)
         {
           test: /\.css$/,
-          include: [],
+          include: [/node_modules/],
           use: [
             {
               loader: isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
