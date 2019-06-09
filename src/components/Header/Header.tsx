@@ -3,7 +3,7 @@ import className from 'classnames/bind';
 import { useConfig } from 'docz';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { useTheme } from '../../theme';
+import { useTheme } from '../../ThemeContext';
 
 import Brand from './components/Brand';
 import Search from './components/Search';

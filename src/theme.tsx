@@ -35,6 +35,7 @@ import {
   Page,
   NotFound,
 } from './components';
+import { ThemeProvider } from './ThemeContext';
 
 // Import global style
 import 'normalize.css';
@@ -43,17 +44,10 @@ import './styles/global.css';
 // Initialize font awesome
 library.add(fasLightbulb, farLightbulb, faSearch, faCode);
 
-export const ThemeContext = createContext({
-  theme: 'light',
-  switchTheme: () => {},
-});
-
-export const useTheme = () => useContext(ThemeContext);
-
 const Theme: FunctionComponent = ({ children }) => {
   const [theme, setTheme] = useState('light');
   return (
-    <ThemeContext.Provider
+    <ThemeProvider
       value={{
         theme,
         switchTheme: () => setTheme(theme === 'light' ? 'dark' : 'light'),
@@ -85,7 +79,7 @@ const Theme: FunctionComponent = ({ children }) => {
       >
         {children}
       </ComponentsProvider>
-    </ThemeContext.Provider>
+    </ThemeProvider>
   );
 };
 

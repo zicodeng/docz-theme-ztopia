@@ -2,7 +2,7 @@ import React, { FunctionComponent, Fragment } from 'react';
 import classNames from 'classnames/bind';
 import { PropsComponentProps, useConfig } from 'docz';
 
-import { useTheme } from '../../theme';
+import { useTheme } from '../../ThemeContext';
 import InlineCode from '../InlineCode';
 
 import Type from './Type';

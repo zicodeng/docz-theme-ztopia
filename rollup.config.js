@@ -18,54 +18,87 @@ console.log(chalk.green(`Building bundle for ${NODE_ENV}...`));
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
-export default {
-  input: './src/theme.tsx',
-  output: { file: './dist/index.js', format: 'esm' },
-  external: id =>
-    !id.startsWith('.') && !id.startsWith('/') && !id.endsWith('css'), // don't treat vendor CSS as external
-  onwarn: warning => {
-    if (warning.code === 'CIRCULAR_DEPENDENCY') {
-      return;
-    }
-    console.warn(`(!) ${warning.message}`);
-  },
-  plugins: [
-    clean('dist'),
-    replace({
-      'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
-    }),
-    resolve({
-      extensions,
-    }),
-    url({
-      emitFiles: false,
-      limit: 5000 * 1024, // 5Mb
-    }),
-    commonjs({}),
-    babel({
-      extensions,
-      include: ['./src/**'],
-      presets: [
-        '@babel/preset-react',
-        '@babel/preset-typescript',
-        ['@babel/preset-env', { modules: false }],
-      ],
-      babelrc: false,
-    }),
-    postcss({
-      modules: {
-        // CSS files that should not be transpiled and converted to CSS modules
-        globalModulePaths: [/node_modules/],
-        generateScopedName: isDev
-          ? '[name]__[local]--[hash:base64:5]'
-          : '[hash:base64:5]',
-      },
-    }),
-    progress({}),
-    tslint({
-      configuration: './tslint.json',
-      include: [/\*.tsx?/],
-    }),
-    isDev ? null : terser(),
+const external = id =>
+  (!id.startsWith('.') && !id.startsWith('/') && !id.endsWith('css')) ||
+  id.includes('ThemeContext');
+
+const babelConfig = {
+  extensions,
+  include: ['./src/**'],
+  presets: [
+    '@babel/preset-react',
+    '@babel/preset-typescript',
+    ['@babel/preset-env', { modules: false }],
   ],
+  babelrc: false,
 };
+
+const tslintConfig = {
+  configuration: './tslint.json',
+  include: [/\*.tsx?/],
+};
+
+export default [
+  {
+    input: './src/theme.tsx',
+    output: { file: './dist/index.js', format: 'esm' },
+    external,
+    onwarn: warning => {
+      if (warning.code === 'CIRCULAR_DEPENDENCY') {
+        return;
+      }
+      console.warn(`(!) ${warning.message}`);
+    },
+    plugins: [
+      clean('dist'),
+      replace({
+        'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
+      }),
+      resolve({
+        extensions,
+      }),
+      url({
+        emitFiles: false,
+        limit: 5000 * 1024, // 5Mb
+      }),
+      commonjs({}),
+      babel(babelConfig),
+      postcss({
+        modules: {
+          // CSS files that should not be transpiled and converted to CSS modules
+          globalModulePaths: [/node_modules/],
+          generateScopedName: isDev
+            ? '[name]__[local]--[hash:base64:5]'
+            : '[hash:base64:5]',
+        },
+      }),
+      progress({}),
+      tslint(tslintConfig),
+      isDev ? null : terser(),
+    ],
+  },
+  {
+    input: './src/ThemeContext.tsx',
+    output: { file: './dist/ThemeContext.js', format: 'esm' },
+    external,
+    onwarn: warning => {
+      if (warning.code === 'CIRCULAR_DEPENDENCY') {
+        return;
+      }
+      console.warn(`(!) ${warning.message}`);
+    },
+    plugins: [
+      replace({
+        'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
+      }),
+      resolve({
+        extensions,
+      }),
+      commonjs({}),
+      babel(babelConfig),
+      progress({}),
+      tslint(tslintConfig),
+      isDev ? null : terser(),
+    ],
+  },
+];

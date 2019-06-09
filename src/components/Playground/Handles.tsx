@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames/bind';
 import { useConfig } from 'docz';
 
-import { useTheme } from '../../theme';
+import { useTheme } from '../../ThemeContext';
 
 import styles from './Handles.css';
 

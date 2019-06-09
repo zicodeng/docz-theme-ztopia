@@ -1,5 +1,5 @@
 import { Props, Playground } from 'docz';
-import { ThemeContext } from '../dist';
+import { ThemeConsumer } from '../dist/ThemeContext';
 
 import Button from './Button';
 
@@ -8,7 +8,7 @@ import Button from './Button';
 ## Demo
 
 <Playground>
-  <ThemeContext.Consumer>
+  <ThemeConsumer.Consumer>
     {({ theme }) => (
       <React.Fragment>
         <Button theme={theme}>BUTTON</Button>
@@ -23,7 +23,7 @@ import Button from './Button';
         </Button>
       </React.Fragment>
     )}
-  </ThemeContext.Consumer>
+  </ThemeConsumer.Consumer>
 </Playground>
 
 ## API
