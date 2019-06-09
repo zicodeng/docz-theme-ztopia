@@ -4,10 +4,12 @@ import React, {
   FunctionComponent,
   ReactElement,
   memo,
+  useEffect,
 } from 'react';
 import { Resizable, ResizeDirection } from 're-resizable';
 import { useConfig } from 'docz';
 import classNames from 'classnames/bind';
+import Frame from 'react-frame-component';
 
 import { HandleRight, HandleBottom } from './Handles';
 import Action, { Props as IAction } from './Action';
@@ -25,10 +27,71 @@ const Preview: FunctionComponent<Props> = memo(
   ({ element: Element, error, actions }) => {
     const [width, setWidth] = useState('100%');
     const [height, setHeight] = useState('auto');
+    const [hasResized, setHasResized] = useState(false);
+    const [styleLinks, setStyleLinks] = useState<JSX.Element[] | null>(null);
+
     const {
       themeConfig: { colors },
     } = useConfig();
 
+    // Because <iframe> serves content in an isolated browsing context (document environment),
+    // Styles in parent browsing context will not be available to <iframe> content,
+    // we need to manually copy styles from parent browsing context to <iframe> browsing context
+    useEffect(() => {
+      const styleLinks = [] as JSX.Element[];
+      let key = 0;
+
+      // Copy <link> elements
+      const links = Array.from(document.getElementsByTagName('link'));
+      links.forEach(({ rel, href, type }) => {
+        if (rel === 'stylesheet') {
+          styleLinks.push(
+            <link key={`link-${key}`} rel={rel} type={type} href={href} />,
+          );
+          key++;
+        }
+      });
+
+      styleLinks.push(
+        <style key={key}>
+          {`
+            html {
+              box-sizing: border-box;
+            }
+
+            *,
+            *::before,
+            *::after {
+              box-sizing: inherit;
+            }
+
+            body {
+              margin: 0;
+              overflow: hidden;
+            }
+          `}
+        </style>,
+      );
+
+      setStyleLinks(styleLinks);
+    }, [Element]);
+
+    const handleResize = useCallback(
+      (
+        _e: MouseEvent | TouchEvent,
+        _direction: ResizeDirection,
+        ref: HTMLDivElement,
+      ) => {
+        if (hasResized) {
+          return;
+        }
+        const height = ref.style.height;
+        if (height !== 'auto') {
+          setHasResized(true);
+        }
+      },
+      [],
+    );
     const handleResizeStop = useCallback(
       (
         _e: MouseEvent | TouchEvent,
@@ -53,8 +116,8 @@ const Preview: FunctionComponent<Props> = memo(
           width,
           height,
         }}
-        minHeight={200}
         minWidth={200}
+        minHeight={200}
         maxWidth="100%"
         style={{
           margin: '0 auto',
@@ -71,6 +134,7 @@ const Preview: FunctionComponent<Props> = memo(
           bottomLeft: false,
           topLeft: false,
         }}
+        onResize={handleResize}
         onResizeStop={handleResizeStop}
         handleComponent={{
           right: <HandleRight />,
@@ -88,9 +152,16 @@ const Preview: FunctionComponent<Props> = memo(
           },
         }}
       >
-        <div className={cx('container')}>
+        <div
+          className={cx('container')}
+          style={{
+            paddingBottom: hasResized ? 30 : 60,
+          }}
+        >
+          <Frame className={cx('iframe')} head={styleLinks}>
+            {Element && <Element />}
+          </Frame>
           {error && error}
-          {Element && <Element />}
         </div>
         <div className={cx('action-bar')}>
           {actions.map(({ icon, onClick }, i) => (
