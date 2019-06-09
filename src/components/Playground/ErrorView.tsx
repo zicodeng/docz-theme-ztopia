@@ -16,7 +16,7 @@ const ErrorView: FunctionComponent = props => {
       style={{
         backgroundColor: colors.error,
         fontFamily: fonts.body,
-        color: colors.blackDark,
+        color: colors.whiteLight,
       }}
       {...props}
     />
