@@ -17,6 +17,11 @@ const evalCode = (code, scope) => {
  * Transpile code string to React element in runtime
  */
 const transpile = (code: string, scope) => {
+  // Handle adjacent elements without parent container
+  if (!code.startsWith('()') && !code.startsWith('class')) {
+    code = `<React.Fragment>${code}</React.Fragment>`;
+  }
+
   //  Remove trailing semicolon to get an actual expression
   const trimmedCode = code.trim().replace(/;$/, '');
 
@@ -37,10 +42,12 @@ export const generateElement = (
   scope,
   errorCallback,
 ): [Function | null, string | null] => {
+  // Handle transpile error
   try {
     const element = transpile(code, scope);
     return [withErrorBoundary(element, errorCallback), null];
   } catch (error) {
+    console.log('ERRR');
     return [null, error.toString()];
   }
 };
