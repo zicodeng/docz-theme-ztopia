@@ -7,16 +7,22 @@ import React, {
 } from 'react';
 import { Resizable, ResizeDirection } from 're-resizable';
 import { useConfig } from 'docz';
+import classNames from 'classnames/bind';
 
 import { HandleRight, HandleBottom } from './Handles';
+import Action, { Props as IAction } from './Action';
+import styles from './Preview.css';
+
+const cx = classNames.bind(styles);
 
 interface Props {
   element: FunctionComponent | null;
   error: ReactElement | null;
+  actions: IAction[];
 }
 
 const Preview: FunctionComponent<Props> = memo(
-  ({ element: Element, error }) => {
+  ({ element: Element, error, actions }) => {
     const [width, setWidth] = useState('100%');
     const [height, setHeight] = useState('auto');
     const {
@@ -54,7 +60,6 @@ const Preview: FunctionComponent<Props> = memo(
           margin: '0 auto',
           borderLeft: `1px solid ${colors.grey}`,
           borderTop: `1px solid ${colors.grey}`,
-          borderBottom: `1px solid ${colors.grey}`,
         }}
         enable={{
           top: false,
@@ -83,8 +88,15 @@ const Preview: FunctionComponent<Props> = memo(
           },
         }}
       >
-        {error && error}
-        {Element && <Element />}
+        <div className={cx('container')}>
+          {error && error}
+          {Element && <Element />}
+        </div>
+        <div className={cx('action-bar')}>
+          {actions.map(({ icon, onClick }, i) => (
+            <Action key={i} icon={icon} onClick={onClick} />
+          ))}
+        </div>
       </Resizable>
     );
   },

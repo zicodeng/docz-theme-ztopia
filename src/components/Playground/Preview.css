@@ -1,0 +1,14 @@
+.container {
+  position: relative;
+  width: calc(100% - 20px);
+  height: calc(100% - 30px);
+}
+
+.action-bar {
+  position: absolute;
+  z-index: 1;
+  right: 20px;
+  bottom: 0;
+  display: flex;
+  height: 30px;
+}

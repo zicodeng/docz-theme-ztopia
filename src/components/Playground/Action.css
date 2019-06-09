@@ -1,0 +1,9 @@
+.button {
+  padding: 0 $spacing-xs;
+  border: 0;
+  font-size: $font-size-s;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  transition: $transition-fast;
+}

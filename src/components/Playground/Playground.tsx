@@ -7,6 +7,7 @@ import React, {
   memo,
 } from 'react';
 import classNames from 'classnames/bind';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PlaygroundProps } from 'docz';
 
 import CodeMirror from '../CodeMirror';
@@ -23,6 +24,7 @@ const Playground: FunctionComponent<PlaygroundProps> = memo(
     const [value, setValue] = useState(code);
     const [error, setError] = useState<ReactElement | null>(null);
     const [element, setElement] = useState<FunctionComponent | null>(null);
+    const [isEditorOpen, setIsEditorOpen] = useState(false);
 
     // Initial element rendering
     useEffect(() => {
@@ -51,8 +53,21 @@ const Playground: FunctionComponent<PlaygroundProps> = memo(
 
     return (
       <section className={cx('container')}>
-        <Preview element={element} error={error} />
-        <CodeMirror readOnly={false} code={value} onChange={handleChange} />
+        <Preview
+          element={element}
+          error={error}
+          actions={[
+            {
+              icon: <FontAwesomeIcon icon="code" />,
+              onClick: () => {
+                setIsEditorOpen(!isEditorOpen);
+              },
+            },
+          ]}
+        />
+        {isEditorOpen && (
+          <CodeMirror readOnly={false} code={value} onChange={handleChange} />
+        )}
       </section>
     );
   },

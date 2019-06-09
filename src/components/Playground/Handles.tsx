@@ -12,7 +12,7 @@ interface HandleProps {
   position: 'bottom' | 'right';
 }
 
-const Handle: FunctionComponent<HandleProps> = ({ position, children }) => {
+const Handle: FunctionComponent<HandleProps> = ({ position }) => {
   const {
     themeConfig: { colors },
   } = useConfig();
@@ -25,9 +25,10 @@ const Handle: FunctionComponent<HandleProps> = ({ position, children }) => {
         backgroundColor:
           theme === 'light' ? colors.whiteDark : colors.blackLight,
         borderColor: colors.grey,
-        borderRightWidth: position === 'right' ? 1 : 0,
-        borderLeftWidth: position === 'right' ? 1 : 0,
+        borderBottomWidth: 1,
         borderTopWidth: position === 'bottom' ? 1 : 0,
+        borderLeftWidth: position === 'right' ? 1 : 0,
+        borderRightWidth: position === 'right' ? 1 : 0,
       }}
     >
       <div className={cx('bars', `bars--${position}`)}>
@@ -44,7 +45,6 @@ const Handle: FunctionComponent<HandleProps> = ({ position, children }) => {
           }}
         />
       </div>
-      {children}
     </div>
   );
 };
