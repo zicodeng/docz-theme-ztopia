@@ -2,6 +2,7 @@
   position: relative;
   width: calc(100% - 20px);
   height: calc(100% - 30px);
+  padding: 40px;
   min-height: 170px;
 }
 

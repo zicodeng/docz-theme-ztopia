@@ -33,7 +33,6 @@ const Playground: FunctionComponent<PlaygroundProps> = memo(
 
     const renderElement = ([element, error]) => {
       if (error) {
-        console.log(error);
         setError(<ErrorBoundary error={error} />);
       } else {
         setElement(element);
@@ -47,7 +46,6 @@ const Playground: FunctionComponent<PlaygroundProps> = memo(
     }, []);
 
     const handleError = error => {
-      console.log(error);
       setError(<ErrorBoundary error={error} />);
     };
 
