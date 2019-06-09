@@ -50,7 +50,7 @@ export default [
       console.warn(`(!) ${warning.message}`);
     },
     plugins: [
-      clean('dist'),
+      !isDev && clean('dist'),
       replace({
         'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
       }),
