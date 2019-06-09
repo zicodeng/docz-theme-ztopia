@@ -47,7 +47,6 @@ export const generateElement = (
     const element = transpile(code, scope);
     return [withErrorBoundary(element, errorCallback), null];
   } catch (error) {
-    console.log('ERRR');
     return [null, error.toString()];
   }
 };
