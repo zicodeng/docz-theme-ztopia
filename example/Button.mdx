@@ -1,0 +1,31 @@
+import { Props, Playground } from 'docz';
+import { ThemeContext } from '../dist';
+
+import Button from './Button';
+
+# Button
+
+## Demo
+
+<Playground>
+  <ThemeContext.Consumer>
+    {({ theme }) => (
+      <React.Fragment>
+        <Button theme={theme}>BUTTON</Button>
+        <Button
+          responsive
+          theme={theme}
+          style={{
+            marginTop: 20,
+          }}
+        >
+          BUTTON
+        </Button>
+      </React.Fragment>
+    )}
+  </ThemeContext.Consumer>
+</Playground>
+
+## API
+
+<Props of={Button} />

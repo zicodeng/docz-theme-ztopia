@@ -8,7 +8,15 @@ const dog = new Pet();
  * This component is used to showcase all possible prop types
  */
 const MyComponent = ({ children }) => {
-  return <div>{children}</div>;
+  return (
+    <div
+      style={{
+        color: 'red',
+      }}
+    >
+      {children}
+    </div>
+  );
 };
 
 MyComponent.propTypes = {

@@ -1,0 +1,27 @@
+.btn {
+  width: 100%;
+  padding: 10px 20px;
+  border: 0;
+  border: 5px solid #ff5a36;
+  cursor: pointer;
+  outline: 0;
+  transition: all 0.3s ease;
+
+  &--responsive {
+    @media (max-width: 1200px) {
+      border-color: #3fc6bd;
+    }
+
+    @media (max-width: 992px) {
+      border-color: #8682f6;
+    }
+
+    @media (max-width: 768px) {
+      border-color: #39f;
+    }
+
+    @media (max-width: 480px) {
+      border-color: #ffa500;
+    }
+  }
+}
