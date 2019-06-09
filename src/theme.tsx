@@ -1,9 +1,4 @@
-import React, {
-  FunctionComponent,
-  createContext,
-  useState,
-  useContext,
-} from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { theme, ComponentsProvider } from 'docz';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
