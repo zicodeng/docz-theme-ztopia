@@ -13,23 +13,24 @@ import Frame from 'react-frame-component';
 
 import { HandleRight, HandleBottom } from './Handles';
 import Action, { Props as IAction } from './Action';
+import ErrorBoundary from './ErrorBoundary';
+import ErrorView from './ErrorView';
 import styles from './Preview.css';
 
 const cx = classNames.bind(styles);
 
 interface Props {
-  element: FunctionComponent | null;
-  error: ReactElement | null;
+  element: ReactElement | null;
+  transpileError: string;
   actions: IAction[];
 }
 
 const Preview: FunctionComponent<Props> = memo(
-  ({ element: Element, error, actions }) => {
+  ({ element, transpileError, actions }) => {
     const [width, setWidth] = useState('100%');
     const [height, setHeight] = useState('auto');
     const [hasResized, setHasResized] = useState(false);
     const [styleLinks, setStyleLinks] = useState<JSX.Element[] | null>(null);
-
     const {
       themeConfig: { colors },
     } = useConfig();
@@ -74,7 +75,7 @@ const Preview: FunctionComponent<Props> = memo(
       );
 
       setStyleLinks(styleLinks);
-    }, [Element]);
+    }, [element]);
 
     const handleResize = useCallback(
       (
@@ -123,6 +124,8 @@ const Preview: FunctionComponent<Props> = memo(
           margin: '0 auto',
           borderLeft: `1px solid ${colors.grey}`,
           borderTop: `1px solid ${colors.grey}`,
+          paddingBottom: '30px',
+          paddingRight: '20px',
         }}
         enable={{
           top: false,
@@ -152,16 +155,13 @@ const Preview: FunctionComponent<Props> = memo(
           },
         }}
       >
-        <div
-          className={cx('container')}
-          style={{
-            paddingBottom: hasResized ? 30 : 60,
-          }}
-        >
-          <Frame className={cx('iframe')} head={styleLinks}>
-            {Element && <Element />}
-          </Frame>
-          {error && error}
+        <div className={cx('container')}>
+          {transpileError && <ErrorView>{transpileError}</ErrorView>}
+          <ErrorBoundary>
+            <Frame className={cx('iframe')} head={styleLinks}>
+              {element}
+            </Frame>
+          </ErrorBoundary>
         </div>
         <div className={cx('action-bar')}>
           {actions.map(({ icon, onClick }, i) => (

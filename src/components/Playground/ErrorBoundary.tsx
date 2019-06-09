@@ -1,42 +1,29 @@
-import React, { PureComponent, FunctionComponent } from 'react';
-import classNames from 'classnames/bind';
-import { useConfig } from 'docz';
+import React, { Component } from 'react';
 
-import styles from './ErrorBoundary.css';
+import ErrorView from './ErrorView';
 
-const cx = classNames.bind(styles);
-
-export const withErrorBoundary = (Element, errorCallback) => () => {
-  return class ErrorBoundary extends PureComponent {
-    render() {
-      return Element && (typeof Element === 'function' ? <Element /> : Element);
-    }
-    componentDidCatch(error) {
-      errorCallback(error);
-    }
-  };
-};
-
-interface Props {
+interface State {
   error: string;
 }
 
-const ErrorBoundary: FunctionComponent<Props> = ({ error }) => {
-  const {
-    themeConfig: { colors, fonts },
-  } = useConfig();
-  return (
-    <div
-      className={cx('container')}
-      style={{
-        backgroundColor: colors.error,
-        fontFamily: fonts.body,
-        color: colors.blackDark,
-      }}
-    >
-      {error}
-    </div>
-  );
-};
+/**
+ * ErrorBoundary only handles runtime errors,
+ * transpile errors are handled separately in Playground
+ */
+class ErrorBoundary extends Component<{}, State> {
+  state = {
+    error: '',
+  };
+
+  render() {
+    const { children } = this.props;
+    const { error } = this.state;
+    return error ? <ErrorView>{error}</ErrorView> : children;
+  }
+
+  static getDerivedStateFromError(error) {
+    return { error: error.toString() };
+  }
+}
 
 export default ErrorBoundary;

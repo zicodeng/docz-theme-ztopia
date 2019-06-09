@@ -12,9 +12,8 @@ import { PlaygroundProps } from 'docz';
 
 import CodeMirror from '../CodeMirror';
 
-import ErrorBoundary from './ErrorBoundary';
 import Preview from './Preview';
-import { generateElement } from './utils';
+import { transpile } from './utils';
 import styles from './Playground.css';
 
 const cx = classNames.bind(styles);
@@ -22,38 +21,35 @@ const cx = classNames.bind(styles);
 const Playground: FunctionComponent<PlaygroundProps> = memo(
   ({ code, scope }) => {
     const [value, setValue] = useState(code);
-    const [error, setError] = useState<ReactElement | null>(null);
-    const [element, setElement] = useState<FunctionComponent | null>(null);
+    const [element, setElement] = useState<ReactElement | null>(null);
+    const [transpileError, setTranspileError] = useState('');
     const [isEditorOpen, setIsEditorOpen] = useState(false);
 
-    // Initial element rendering
-    useEffect(() => {
-      renderElement(generateElement(code, scope, handleError));
-    }, [code, scope]);
-
-    const renderElement = ([element, error]) => {
-      if (error) {
-        setError(<ErrorBoundary error={error} />);
-      } else {
+    const renderElement = code => {
+      try {
+        const element = transpile(code, scope);
         setElement(element);
-        setError(null);
+        setTranspileError('');
+      } catch (error) {
+        setTranspileError(error.toString());
       }
     };
 
+    // Initial element rendering
+    useEffect(() => {
+      renderElement(code);
+    }, [code, scope]);
+
     const handleChange = useCallback((value: string) => {
       setValue(value);
-      renderElement(generateElement(value, scope, handleError));
+      renderElement(value);
     }, []);
-
-    const handleError = error => {
-      setError(<ErrorBoundary error={error} />);
-    };
 
     return (
       <section className={cx('container')}>
         <Preview
           element={element}
-          error={error}
+          transpileError={transpileError}
           actions={[
             {
               icon: <FontAwesomeIcon icon="code" />,
