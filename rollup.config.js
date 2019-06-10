@@ -49,7 +49,7 @@ const tslintConfig = {
 export default [
   {
     input: './src/theme.tsx',
-    output: { file: './dist/index.js', format: 'esm' },
+    output: { file: './dist/index.js', format: 'cjs' },
     external,
     onwarn,
     plugins: [
@@ -82,7 +82,7 @@ export default [
   },
   {
     input: './src/ThemeContext.tsx',
-    output: { file: './dist/ThemeContext.js', format: 'esm' },
+    output: { file: './dist/ThemeContext.js', format: 'cjs' },
     external,
     onwarn,
     plugins: [
