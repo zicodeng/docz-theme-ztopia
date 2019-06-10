@@ -83,13 +83,6 @@ const Theme: FunctionComponent = ({ children }) => {
  * This theme configuration will be merged with `themeConfig` setting in the `doczrc.js` project configuration
  */
 const defaultThemeConfig = {
-  showPlaygroundEditor: true,
-  editorMaxLines: 20,
-  /**
-   * Customize codemirror theme
-   * Available themes: https://codemirror.net/theme/
-   */
-  codemirrorTheme: 'monokai',
   colors: {
     blackLight: '#242635', // sidebar background (dark), table header background (dark), preview handle background (dark)
     black: '#151725', // page background (dark)

@@ -9,26 +9,54 @@ route: /docs/getting-started
 ## Installation
 
 ```sh
-npm i ztopia-ui
+npm i -D docz-theme-ztopia
 or
-yarn add ztopia-ui
+yarn add -D docz-theme-ztopia
 ```
 
 ## Usage
 
 ```javascript
-import React from 'react';
-import ReactDOM from 'react-dom';
+// doczrc.js
+export default {
+  ...
+  theme: 'docz-theme-ztopia',
+  ...
+}
+```
 
-import { Button } from 'ztopia-ui';
+## Customize
 
-const App = () => {
-  return (
-    <div className="container">
-      <Button>Clicky</Button>
-    </div>
-  );
-};
-
-ReactDOM.render(<App />, document.getElementById('root'));
+```javascript
+// doczrc.js
+export default {
+  ...
+  theme: 'docz-theme-ztopia',
+  themeConfig: {
+    colors: {
+      blackLight: '#242635', // sidebar background (dark), table header background (dark), preview handle background (dark)
+      black: '#151725', // page background (dark)
+      blackDark: '#0e1019', // text
+      whiteLight: '#fcfcfd', // text
+      white: '#F8F8F9', // page background (light)
+      whiteDark: '#f4f4f5', // sidebar background (light), table header background (light), preview handle background (light)
+      grey: '#c6cad2', // table border, preview border, preview handle bars
+      primaryLight: '#d9eaff', // sidebar menu item (hovered)
+      primary: '#006fff', // brand, link
+      primaryDark: '#0058cc', // link (hovered)
+      secondary: '#62ddbd',
+      highlight: '#ec5564', // matched search query
+      error: 'rgba(160,0,0,0.8)', // preview error background
+    },
+    fonts: {
+      body: 'Lato, sans-serif',
+      title: 'Oswald, sans-serif',
+    },
+    logo: {
+      src: null,
+      width: 40,
+    },
+  },
+  ...
+}
 ```

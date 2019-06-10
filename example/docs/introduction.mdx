@@ -6,8 +6,67 @@ route: /
 
 # Introduction
 
-_Build awesome UI libraries with Docz and Ztopia theme_
+_Write awesome documents for UI components with Docz and Ztopia theme!_
 
 ## Why Docz?
 
+_It's never been easier to document your things!_
+
+Let's all admit the fact that most engineers do not like writing docs,
+needless to say writing awesome docs. We cannot really blame on them
+for being lazy nor too smart to write some dummy text instead of code.
+Given the fact that engineers are always too buzy with rushing projects to production,
+fixing regression bugs, arguing with coworkers, it is vital to have a documentation
+tool that requires no additional effort and time to write awesome docs.
+[Docz](https://www.docz.site/) is by far my favorite UI documentation tool that
+makes me as a writer efficient and you as a reader happy.
+
+You might be wondering: how is Docz better than [Storybook](https://storybook.js.org/)?
+Don't get me wrong. Storybook can surely be a powerful UI documentation tool as well,
+only if your team members and you know how to configure and use it properly.
+See, this is the biggest difference between Docz and Storybook:
+engineers firstly need to learn how to configure and use Storybook properly
+before they can write awesome docs, whereas Docz fully leverages [MDX](https://mdxjs.com/),
+allowing us to directly import UI components in markdown, making the documenting experience truly great.
+Personally, I feel like writing docs with Storybook is more like writing JavaScript tests,
+whereas writing docs with Docz is more like writing kindergarten journals.
+
+Secret, don't tell anyone else: the company I am working for moved away from
+Storybook to Docz!
+
 ## Why Ztopia Theme?
+
+For a long time, Docz has been lonely with just one look,
+[the default theme](https://github.com/pedronauck/docz/tree/master/core/docz-theme-default).
+Now, let's embrace its new look with the Ztopia theme! Well, creating a new look
+is just one of many reasons I want to start this project. Below are more reasons
+why you should switch to the Ztopia theme:
+
+- **Aesthetically pleasing design**: inspired by
+  [Ant Design React](https://ant.design/docs/react/introduce) and
+  [Material UI](https://material-ui.com/), 40% of my time was devoted to the Ztopia UI&UX
+  when I built this theme. Why? because I hope documentation with great UI&UX
+  can attract people reading docs :)
+
+- **One theme, two looks**: Ztopia theme comes with light and dark mode. You can click
+  the light bulb in top right corner to see the difference. If your component also
+  supports light and dark theme, you can import `ThemeConsumer` from this library,
+  and use it to theme your components. See `example/Button.mdx` for an example
+
+- **Gracefully handle complex prop shape**: it is common to have component props
+  that accept complex shapes. Inlining them as plain text like this
+  `PropTypes.shape({ firstName: PropTypes.string.isRequired, lastName: PropTypes.number, ...})`
+  is probably not a best way to show. Fortunately, Ztopia handles complex shapes automatically for you.
+  Whenever you see `Shape` type in props table, it means you can hover it
+  and see your complex shape. Check out examples in [Design](/docs/design) page
+
+- **Description with inline code**: when you write descriptions for props,
+  you can embed inline code like this /\*\* This is `code` \*/
+
+- **Playground with built-in iframe support**: the default Docz `<Playground>` is really cool,
+  but it does not serve your components in an isolated browsing context.
+  This makes developers hard to test component responsiveness and lead to
+  possible CSS collisions between Docz default theme style and component style.
+  There is a [GitHub issue](https://github.com/pedronauck/docz/issues/789) discussing about it.
+  With the above reasons in mind, Ztopia theme `<Playground>` is built with `<iframe>` support in mind,
+  so that you can build your components in isolation. See [Button](/components/button) page for an example
