@@ -12,7 +12,7 @@ export default {
   public: './public',
   title: 'Ztopia Theme',
   description: pkg.description,
-  theme: 'docz-theme-ztopia',
+  theme: path.resolve(__dirname, './dist'),
   typescript: false,
   notUseSpecifiers: true,
   htmlContext: {
