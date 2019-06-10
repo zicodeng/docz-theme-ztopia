@@ -8,10 +8,12 @@
   },
   "scripts": {
     "start": "docz dev",
-    "build-docs": "docz build",
+    "build-docs": "docz build && yarn create-200",
     "build-dev": "NODE_ENV=development rollup -c --watch",
     "build-prod": "NODE_ENV=production rollup -c",
-    "clean": "rm -rf node_modules .docz yarn.lock"
+    "clean": "rm -rf node_modules .docz yarn.lock",
+    "deploy": "surge --domain docz-theme-ztopia.surge.sh ./.docz/dist",
+    "create-200": "cp ./.docz/dist/index.html ./.docz/dist/200.html"
   },
   "repository": {
     "type": "git",
@@ -22,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/zicodeng/docz-theme-ztopia/issues"
   },
-  "homepage": "https://github.com/zicodeng/docz-theme-ztopia#readme",
+  "homepage": "http://docz-theme-ztopia.surge.sh",
   "keywords": [
     "react",
     "ui",
@@ -92,6 +94,7 @@
     "stylelint-config-prettier": "^5.1.0",
     "stylelint-config-standard": "^18.3.0",
     "stylelint-order": "^3.0.0",
+    "surge": "^0.21.3",
     "terser-webpack-plugin": "^1.3.0",
     "tslint": "^5.16.0",
     "typescript": "^3.4.5"
