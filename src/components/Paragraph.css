@@ -1,4 +1,5 @@
 .para {
+  margin: $spacing-s 0;
   font-size: $font-size-m;
   line-height: $line-height-body;
 }

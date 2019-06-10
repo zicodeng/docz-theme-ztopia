@@ -18,9 +18,7 @@ const Brand = () => {
     <div
       className={cx('container')}
       style={{
-        background: `linear-gradient(to left, ${colors.primary}, ${
-          colors.secondary
-        })`,
+        background: `linear-gradient(to left, ${colors.primary}, ${colors.secondary})`,
         color: colors.whiteLight,
         fontFamily: fonts.body,
       }}
