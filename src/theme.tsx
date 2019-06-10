@@ -42,39 +42,39 @@ library.add(fasLightbulb, farLightbulb, faSearch, faCode);
 const Theme: FunctionComponent = ({ children }) => {
   const [theme, setTheme] = useState('light');
   return (
-    <ThemeProvider
-      value={{
-        theme,
-        switchTheme: () => setTheme(theme === 'light' ? 'dark' : 'light'),
+    <ComponentsProvider
+      components={{
+        p: Paragraph,
+        h1: H1,
+        h2: H2,
+        h3: H3,
+        h4: H4,
+        h5: H5,
+        h6: H6,
+        a: Link,
+        hr: ThematicBreak,
+        inlineCode: InlineCode,
+        pre: PreformattedText,
+        ol: OrderedList,
+        ul: UnorderedList,
+        blockquote: Blockquote,
+        table: Table,
+        loading: Loader,
+        props: Props,
+        playground: Playground,
+        page: Page,
+        notFound: NotFound,
       }}
     >
-      <ComponentsProvider
-        components={{
-          p: Paragraph,
-          h1: H1,
-          h2: H2,
-          h3: H3,
-          h4: H4,
-          h5: H5,
-          h6: H6,
-          a: Link,
-          hr: ThematicBreak,
-          inlineCode: InlineCode,
-          pre: PreformattedText,
-          ol: OrderedList,
-          ul: UnorderedList,
-          blockquote: Blockquote,
-          table: Table,
-          loading: Loader,
-          props: Props,
-          playground: Playground,
-          page: Page,
-          notFound: NotFound,
+      <ThemeProvider
+        value={{
+          theme,
+          switchTheme: () => setTheme(theme === 'light' ? 'dark' : 'light'),
         }}
       >
         {children}
-      </ComponentsProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </ComponentsProvider>
   );
 };
 
