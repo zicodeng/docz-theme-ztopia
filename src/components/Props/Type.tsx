@@ -24,7 +24,7 @@ const Type: FunctionComponent<Props> = memo(({ type }) => {
     return <Tooltip label="Shape" value={convertTypeToCode(type)} />;
   }
   if (type.name === 'arrayOf' && type.value && type.value.name === 'shape') {
-    return <Tooltip label="Shape[]" value={convertTypeToCode(type.value)} />;
+    return <Tooltip label="shape[]" value={convertTypeToCode(type.value)} />;
   }
   return <React.Fragment>{parseType(type)}</React.Fragment>;
 });
