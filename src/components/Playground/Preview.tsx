@@ -47,7 +47,6 @@ const Preview: FunctionComponent<Props> = memo(
       ) => {
         const width = ref.style.width;
         if (width) {
-          console.log(width);
           setWidth(width);
         }
         const height = ref.style.height;
