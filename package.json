@@ -1,7 +1,7 @@
 {
   "name": "docz-theme-ztopia",
   "version": "0.0.0",
-  "description": "Build awesome UI libraries with Docz and Ztopia theme",
+  "description": "Write awesome documents for UI components with Docz and Ztopia theme!",
   "main": "index.js",
   "resolutions": {
     "docz/**/webpack": "4.28.4"
@@ -15,23 +15,25 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zicodeng/ztopia-ui.git"
+    "url": "git+https://github.com/zicodeng/docz-theme-ztopia.git"
   },
   "author": "Zico Deng",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zicodeng/ztopia-ui/issues"
+    "url": "https://github.com/zicodeng/docz-theme-ztopia/issues"
   },
-  "homepage": "https://github.com/zicodeng/ztopia-ui#readme",
+  "homepage": "https://github.com/zicodeng/docz-theme-ztopia#readme",
   "keywords": [
     "react",
     "ui",
     "docz",
     "plugin",
+    "docz-plugin",
     "docs",
     "documentation",
+    "documentation-tool",
     "theme",
-    "docz theme"
+    "docz-theme"
   ],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
