@@ -108,12 +108,13 @@ const Preview: FunctionComponent<Props> = memo(
         <div className={cx('container')}>
           {transpileError && <ErrorView>{transpileError}</ErrorView>}
           <ErrorBoundary>
-            <IFrame height={iFrameHeight}>{element}</IFrame>
+            {/* <IFrame height={iFrameHeight}>{element}</IFrame> */}
+            {element}
           </ErrorBoundary>
         </div>
         <div className={cx('action-bar')}>
-          {actions.map(({ icon, onClick }, i) => (
-            <Action key={i} icon={icon} onClick={onClick} />
+          {actions.map(({ isActive, icon, onClick }, i) => (
+            <Action key={i} isActive={isActive} icon={icon} onClick={onClick} />
           ))}
         </div>
       </Resizable>

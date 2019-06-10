@@ -52,6 +52,7 @@ const Playground: FunctionComponent<PlaygroundProps> = memo(
           transpileError={transpileError}
           actions={[
             {
+              isActive: isEditorOpen,
               icon: <FontAwesomeIcon icon="code" />,
               onClick: () => {
                 setIsEditorOpen(!isEditorOpen);

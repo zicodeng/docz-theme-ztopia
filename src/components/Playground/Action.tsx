@@ -7,11 +7,12 @@ import styles from './Action.css';
 const cx = classNames.bind(styles);
 
 export interface Props {
+  isActive: boolean;
   icon: ReactElement;
   onClick: () => void;
 }
 
-const Action: FunctionComponent<Props> = ({ icon, onClick }) => {
+const Action: FunctionComponent<Props> = ({ isActive, icon, onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
   const {
     themeConfig: { colors },
@@ -20,7 +21,11 @@ const Action: FunctionComponent<Props> = ({ icon, onClick }) => {
     <button
       className={cx('button')}
       style={{
-        color: isHovered ? colors.primary : colors.grey,
+        color: isActive
+          ? colors.primary
+          : isHovered
+          ? colors.primary
+          : colors.grey,
         borderLeft: `1px solid ${colors.grey}`,
       }}
       onClick={onClick}
