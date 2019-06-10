@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, memo } from 'react';
 import classNames from 'classnames/bind';
 import { useConfig } from 'docz';
 
@@ -6,7 +6,11 @@ import styles from './ErrorView.css';
 
 const cx = classNames.bind(styles);
 
-const ErrorView: FunctionComponent = props => {
+interface Props {
+  errorType: 'runtime' | 'transpile';
+}
+
+const ErrorView: FunctionComponent<Props> = memo(({ errorType, children }) => {
   const {
     themeConfig: { colors, fonts },
   } = useConfig();
@@ -18,9 +22,21 @@ const ErrorView: FunctionComponent = props => {
         fontFamily: fonts.body,
         color: colors.whiteLight,
       }}
-      {...props}
-    />
+    >
+      <p>
+        Oops! Your code seems to have a&nbsp;
+        <span
+          style={{
+            color: colors.primary,
+          }}
+        >
+          {errorType}
+        </span>
+        &nbsp;error. See details below to help you debug
+      </p>
+      <p>{children}</p>
+    </div>
   );
-};
+});
 
 export default ErrorView;

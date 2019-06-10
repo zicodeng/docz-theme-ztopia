@@ -108,7 +108,9 @@ const Preview: FunctionComponent<Props> = memo(
         }}
       >
         <div className={cx('container')}>
-          {transpileError && <ErrorView>{transpileError}</ErrorView>}
+          {transpileError && (
+            <ErrorView errorType="transpile">{transpileError}</ErrorView>
+          )}
           <ErrorBoundary>
             {isIFrameMode ? (
               <IFrame height={iFrameHeight}>{element}</IFrame>

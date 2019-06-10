@@ -96,7 +96,7 @@ const defaultThemeConfig = {
     primaryDark: '#0058cc', // link (hovered)
     secondary: '#62ddbd',
     highlight: '#ec5564', // matched search query
-    error: 'rgba(160,0,0,0.8)', // preview error background
+    error: 'rgba(200,0,0,0.8)', // preview error background
   },
   fonts: {
     body: 'Lato, sans-serif',
