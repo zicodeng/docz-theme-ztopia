@@ -88,9 +88,9 @@ const defaultThemeConfig = {
     black: '#151725', // page background (dark)
     blackDark: '#0e1019', // text
     whiteLight: '#fcfcfd', // text
-    white: '#F8F8F9', // page background (light)
-    whiteDark: '#f4f4f5', // sidebar background (light), table header background (light), preview handle background (light)
-    grey: '#c6cad2', // table border, preview border, preview handle bars
+    white: '#f8f8f9', // page background (light)
+    whiteDark: '#f3f3f4', // sidebar background (light), table header background (light), preview handle background (light)
+    grey: '#d1d4db', // table border, preview border, preview handle bars
     primaryLight: '#d9eaff', // sidebar menu item (hovered)
     primary: '#006fff', // brand, link
     primaryDark: '#0058cc', // link (hovered)
