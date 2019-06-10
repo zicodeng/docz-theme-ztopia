@@ -1,6 +1,6 @@
 {
   "name": "docz-theme-ztopia",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Write awesome documents for UI components with Docz and Ztopia theme!",
   "main": "index.js",
   "resolutions": {
