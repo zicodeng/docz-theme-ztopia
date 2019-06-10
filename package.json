@@ -12,6 +12,7 @@
     "build-dev": "NODE_ENV=development rollup -c --watch",
     "build-prod": "NODE_ENV=production rollup -c",
     "clean": "rm -rf node_modules .docz yarn.lock",
+    "release": "np",
     "deploy": "surge --domain docz-theme-ztopia.surge.sh ./.docz/dist",
     "create-200": "cp ./.docz/dist/index.html ./.docz/dist/200.html"
   },
@@ -71,6 +72,7 @@
     "husky": "^2.4.0",
     "lint-staged": "^8.2.0",
     "mini-css-extract-plugin": "^0.7.0",
+    "np": "^5.0.3",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-custom-media": "^7.0.8",
     "postcss-extend-rule": "^2.0.0",
