@@ -12,7 +12,10 @@
     "build-dev": "NODE_ENV=development rollup -c --watch",
     "build-prod": "NODE_ENV=production rollup -c",
     "clean": "rm -rf node_modules .docz yarn.lock",
-    "release": "np",
+    "pub": "yarn build-prod && cd dist && npm publish && cd ..",
+    "release-patch": "npm version patch && yarn pub",
+    "release-minor": "npm version minor",
+    "release-major": "npm version major",
     "deploy": "surge --domain docz-theme-ztopia.surge.sh ./.docz/dist",
     "create-200": "cp ./.docz/dist/index.html ./.docz/dist/200.html"
   },
@@ -69,10 +72,10 @@
     "autoprefixer": "^9.5.1",
     "css-loader": "^2.1.1",
     "cssnano": "^4.1.10",
+    "docz-theme-ztopia": "^0.0.1",
     "husky": "^2.4.0",
     "lint-staged": "^8.2.0",
     "mini-css-extract-plugin": "^0.7.0",
-    "np": "^5.0.3",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-custom-media": "^7.0.8",
     "postcss-extend-rule": "^2.0.0",
@@ -84,6 +87,7 @@
     "rollup": "^1.13.1",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-copy": "^2.0.1",
     "rollup-plugin-node-resolve": "^5.0.1",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-progress": "^1.1.1",
@@ -123,5 +127,8 @@
         "git add"
       ]
     }
+  },
+  "np": {
+    "contents": "dist"
   }
 }

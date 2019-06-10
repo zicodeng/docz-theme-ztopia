@@ -7,6 +7,7 @@ import url from 'rollup-plugin-url';
 import tslint from 'rollup-plugin-tslint';
 import progress from 'rollup-plugin-progress';
 import { terser } from 'rollup-plugin-terser';
+import copy from 'rollup-plugin-copy';
 import chalk from 'chalk';
 
 import clean from './scripts/rollup-plugin-clean';
@@ -96,6 +97,13 @@ export default [
       babel(babelConfig),
       progress({}),
       tslint(tslintConfig),
+      isDev
+        ? null
+        : copy({
+            targets: {
+              './package.json': './dist/package.json',
+            },
+          }),
       isDev ? null : terser(),
     ],
   },
