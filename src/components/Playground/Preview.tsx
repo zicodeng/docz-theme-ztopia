@@ -4,20 +4,26 @@ import React, {
   FunctionComponent,
   ReactElement,
   memo,
-  useEffect,
 } from 'react';
 import { Resizable, ResizeDirection } from 're-resizable';
 import { useConfig } from 'docz';
 import classNames from 'classnames/bind';
-import Frame from 'react-frame-component';
 
-import { HandleRight, HandleBottom } from './Handles';
+import {
+  HandleRight,
+  HandleBottom,
+  HANDLE_RIGHT_SIZE,
+  HANDLE_BOTTOM_SIZE,
+} from './Handles';
 import Action, { Props as IAction } from './Action';
 import ErrorBoundary from './ErrorBoundary';
 import ErrorView from './ErrorView';
+import IFrame from './IFrame';
 import styles from './Preview.css';
 
 const cx = classNames.bind(styles);
+
+const CONTAINER_PADDING = 30;
 
 interface Props {
   element: ReactElement | null;
@@ -29,71 +35,11 @@ const Preview: FunctionComponent<Props> = memo(
   ({ element, transpileError, actions }) => {
     const [width, setWidth] = useState('100%');
     const [height, setHeight] = useState('auto');
-    const [hasResized, setHasResized] = useState(false);
-    const [styleLinks, setStyleLinks] = useState<JSX.Element[] | null>(null);
     const {
       themeConfig: { colors },
     } = useConfig();
 
-    // Because <iframe> serves content in an isolated browsing context (document environment),
-    // Styles in parent browsing context will not be available to <iframe> content,
-    // we need to manually copy styles from parent browsing context to <iframe> browsing context
-    useEffect(() => {
-      const styleLinks = [] as JSX.Element[];
-      let key = 0;
-
-      // Copy <link> elements
-      const links = Array.from(document.getElementsByTagName('link'));
-      links.forEach(({ rel, href, type }) => {
-        if (rel === 'stylesheet') {
-          styleLinks.push(
-            <link key={`link-${key}`} rel={rel} type={type} href={href} />,
-          );
-          key++;
-        }
-      });
-
-      styleLinks.push(
-        <style key={key}>
-          {`
-            html {
-              box-sizing: border-box;
-            }
-
-            *,
-            *::before,
-            *::after {
-              box-sizing: inherit;
-            }
-
-            body {
-              margin: 0;
-              overflow: hidden;
-            }
-          `}
-        </style>,
-      );
-
-      setStyleLinks(styleLinks);
-    }, [element]);
-
     const handleResize = useCallback(
-      (
-        _e: MouseEvent | TouchEvent,
-        _direction: ResizeDirection,
-        ref: HTMLDivElement,
-      ) => {
-        if (hasResized) {
-          return;
-        }
-        const height = ref.style.height;
-        if (height !== 'auto') {
-          setHasResized(true);
-        }
-      },
-      [],
-    );
-    const handleResizeStop = useCallback(
       (
         _e: MouseEvent | TouchEvent,
         _direction: ResizeDirection,
@@ -124,8 +70,8 @@ const Preview: FunctionComponent<Props> = memo(
           margin: '0 auto',
           borderLeft: `1px solid ${colors.grey}`,
           borderTop: `1px solid ${colors.grey}`,
-          paddingBottom: '30px',
-          paddingRight: '20px',
+          paddingBottom: CONTAINER_PADDING,
+          paddingRight: HANDLE_RIGHT_SIZE,
         }}
         enable={{
           top: false,
@@ -138,7 +84,6 @@ const Preview: FunctionComponent<Props> = memo(
           topLeft: false,
         }}
         onResize={handleResize}
-        onResizeStop={handleResizeStop}
         handleComponent={{
           right: <HandleRight />,
           bottom: <HandleBottom />,
@@ -149,7 +94,7 @@ const Preview: FunctionComponent<Props> = memo(
             right: 0,
           },
           bottom: {
-            width: 'calc(100% - 20px)',
+            width: `calc(100% - ${HANDLE_RIGHT_SIZE}px)`,
             height: 30,
             bottom: 0,
           },
@@ -158,9 +103,17 @@ const Preview: FunctionComponent<Props> = memo(
         <div className={cx('container')}>
           {transpileError && <ErrorView>{transpileError}</ErrorView>}
           <ErrorBoundary>
-            <Frame className={cx('iframe')} head={styleLinks}>
+            <IFrame
+              height={
+                height === 'auto'
+                  ? 0
+                  : parseInt(height) -
+                    HANDLE_BOTTOM_SIZE -
+                    CONTAINER_PADDING * 2
+              }
+            >
               {element}
-            </Frame>
+            </IFrame>
           </ErrorBoundary>
         </div>
         <div className={cx('action-bar')}>

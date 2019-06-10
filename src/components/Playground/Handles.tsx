@@ -8,6 +8,9 @@ import styles from './Handles.css';
 
 const cx = classNames.bind(styles);
 
+export const HANDLE_RIGHT_SIZE = 20;
+export const HANDLE_BOTTOM_SIZE = 30;
+
 interface HandleProps {
   position: 'bottom' | 'right';
 }

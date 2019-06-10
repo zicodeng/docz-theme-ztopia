@@ -6,7 +6,11 @@ import styles from './Loader.css';
 
 const cx = classNames.bind(styles);
 
-const Loader: FunctionComponent = () => {
+interface Props {
+  className?: string;
+}
+
+const Loader: FunctionComponent<Props> = ({ className }) => {
   const {
     themeConfig: { colors },
   } = useConfig();
@@ -14,14 +18,12 @@ const Loader: FunctionComponent = () => {
     <div
       key={i}
       style={{
-        background: `linear-gradient(to top, ${colors.primary}, ${
-          colors.secondary
-        })`,
+        background: `linear-gradient(to top, ${colors.primary}, ${colors.secondary})`,
       }}
     />
   ));
   return (
-    <div className={cx('outer-container')}>
+    <div className={cx(className, 'outer-container')}>
       <div className={cx('inner-container')}>{bars}</div>
     </div>
   );
