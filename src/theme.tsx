@@ -93,7 +93,7 @@ const defaultThemeConfig = {
     grey: '#d1d4db', // table border, preview border, preview handle bars
     primaryLight: '#d9eaff', // sidebar menu item (hovered)
     primary: '#006fff', // brand, link
-    primaryDark: '#0058cc', // link (hovered)
+    primaryDark: '#0046a3', // link (hovered)
     secondary: '#62ddbd',
     highlight: '#ec5564', // matched search query
     error: 'rgba(200,0,0,0.8)', // preview error background
