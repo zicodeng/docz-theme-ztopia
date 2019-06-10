@@ -24,6 +24,7 @@ const Playground: FunctionComponent<PlaygroundProps> = memo(
     const [element, setElement] = useState<ReactElement | null>(null);
     const [transpileError, setTranspileError] = useState('');
     const [isEditorOpen, setIsEditorOpen] = useState(false);
+    const [isIFrameMode, setIsIFrameMode] = useState(false);
 
     const renderElement = code => {
       try {
@@ -48,9 +49,17 @@ const Playground: FunctionComponent<PlaygroundProps> = memo(
     return (
       <section className={cx('container')}>
         <Preview
+          isIFrameMode={isIFrameMode}
           element={element}
           transpileError={transpileError}
           actions={[
+            {
+              isActive: isIFrameMode,
+              icon: <FontAwesomeIcon icon="info" />,
+              onClick: () => {
+                setIsIFrameMode(!isIFrameMode);
+              },
+            },
             {
               isActive: isEditorOpen,
               icon: <FontAwesomeIcon icon="code" />,

@@ -5,6 +5,7 @@ import {
   faLightbulb as fasLightbulb,
   faSearch,
   faCode,
+  faInfo,
 } from '@fortawesome/free-solid-svg-icons';
 import { faLightbulb as farLightbulb } from '@fortawesome/free-regular-svg-icons';
 
@@ -37,7 +38,7 @@ import 'normalize.css';
 import './styles/global.css';
 
 // Initialize font awesome
-library.add(fasLightbulb, farLightbulb, faSearch, faCode);
+library.add(fasLightbulb, farLightbulb, faSearch, faCode, faInfo);
 
 const Theme: FunctionComponent = ({ children }) => {
   const [theme, setTheme] = useState('light');

@@ -26,15 +26,17 @@ const cx = classNames.bind(styles);
 const CONTAINER_PADDING = 30;
 
 interface Props {
+  isIFrameMode: boolean;
   element: ReactElement | null;
   transpileError: string;
   actions: IAction[];
 }
 
 const Preview: FunctionComponent<Props> = memo(
-  ({ element, transpileError, actions }) => {
+  ({ isIFrameMode, element, transpileError, actions }) => {
     const [width, setWidth] = useState('100%');
     const [height, setHeight] = useState('auto');
+
     const {
       themeConfig: { colors },
     } = useConfig();
@@ -108,8 +110,11 @@ const Preview: FunctionComponent<Props> = memo(
         <div className={cx('container')}>
           {transpileError && <ErrorView>{transpileError}</ErrorView>}
           <ErrorBoundary>
-            {/* <IFrame height={iFrameHeight}>{element}</IFrame> */}
-            {element}
+            {isIFrameMode ? (
+              <IFrame height={iFrameHeight}>{element}</IFrame>
+            ) : (
+              element
+            )}
           </ErrorBoundary>
         </div>
         <div className={cx('action-bar')}>

@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 export interface Props {
   isActive: boolean;
-  icon: ReactElement;
+  icon: ReactElement | string;
   onClick: () => void;
 }
 
