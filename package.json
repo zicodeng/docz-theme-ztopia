@@ -1,7 +1,7 @@
 {
   "name": "docz-theme-ztopia",
   "version": "0.0.3",
-  "description": "Write awesome documents for UI components with Docz and Ztopia theme!",
+  "description": "Write awesome documentation for UI components with Docz and Ztopia theme!",
   "main": "index.js",
   "resolutions": {
     "docz/**/webpack": "4.28.4"
@@ -16,7 +16,7 @@
     "release-patch": "npm version patch && yarn pub",
     "release-minor": "npm version minor",
     "release-major": "npm version major",
-    "deploy": "surge --domain docz-theme-ztopia.surge.sh ./.docz/dist",
+    "deploy": "yarn build-docs && surge --domain docz-theme-ztopia.surge.sh ./.docz/dist",
     "create-200": "cp ./.docz/dist/index.html ./.docz/dist/200.html"
   },
   "repository": {
