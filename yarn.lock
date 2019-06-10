@@ -3617,30 +3617,6 @@ docz-core@^1.2.0:
     ws "^7.0.0"
     yargs "^13.2.2"
 
-docz-theme-ztopia@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/docz-theme-ztopia/-/docz-theme-ztopia-0.0.1.tgz#cc1c9e419c438be78dac97a2c9b958cdc4b4caa9"
-  integrity sha512-MwIGtNrT/W57t6ly/kcevEGHEOV2t9SUSaoo2ZkzuhEvvxWQ6Ye65jX5GDMugmY32vOpzmYSOJWkzOyO8Q0+RQ==
-  dependencies:
-    "@fortawesome/fontawesome-svg-core" "^1.2.19"
-    "@fortawesome/free-regular-svg-icons" "^5.9.0"
-    "@fortawesome/free-solid-svg-icons" "^5.9.0"
-    "@fortawesome/react-fontawesome" "^0.1.4"
-    buble "^0.19.7"
-    chalk "^2.4.2"
-    classnames "^2.2.6"
-    codemirror "^5.47.0"
-    docz "^1.2.0"
-    lodash-es "^4.17.11"
-    normalize.css "^8.0.1"
-    prettier "^1.17.1"
-    prop-types "^15.7.2"
-    re-resizable "^5.0.0"
-    react "^16.8.6"
-    react-codemirror2 "^6.0.0"
-    react-dom "^16.8.6"
-    react-frame-component "^4.1.0"
-
 docz-utils@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/docz-utils/-/docz-utils-1.2.0.tgz#a7e9f3f56217f17fbc0699b5f4cf4323a53f3d13"
