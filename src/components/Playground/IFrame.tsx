@@ -18,7 +18,7 @@ const INITIAL_CONTENT = `
 </html>
 `;
 
-const INITIAL_MIN_HEIGHT = 170;
+const INITIAL_MIN_HEIGHT = 105;
 
 interface Props {
   height: number;
@@ -31,6 +31,7 @@ const IFrame: FunctionComponent<Props> = ({ height, children }) => {
 
   const [initialHeight, setInitialHeight] = useState(INITIAL_MIN_HEIGHT);
   const [styleLinks, setStyleLinks] = useState<JSX.Element[] | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     injectStyleLinks();
@@ -67,23 +68,25 @@ const IFrame: FunctionComponent<Props> = ({ height, children }) => {
         ref.current.node.contentDocument &&
         ref.current.node.contentDocument.body.scrollHeight !== 0
       ) {
-        setInitialHeight(ref.current.node.contentDocument.body.scrollHeight);
+        const initialHeight =
+          ref.current.node.contentDocument.body.scrollHeight;
+        if (initialHeight > INITIAL_MIN_HEIGHT) {
+          setInitialHeight(initialHeight);
+        }
+        setIsLoading(false);
       }
     }, 1000);
   };
 
   return (
     <Fragment>
-      {initialHeight === INITIAL_MIN_HEIGHT && (
-        <Loader className={cx('loader')} />
-      )}
+      {isLoading && <Loader className={cx('loader')} />}
       <Frame
         style={{
           height: height ? height : initialHeight,
           width: '100%',
           border: 0,
-          visibility:
-            initialHeight === INITIAL_MIN_HEIGHT ? 'hidden' : 'visible',
+          visibility: isLoading ? 'hidden' : 'visible',
         }}
         ref={ref}
         head={styleLinks}

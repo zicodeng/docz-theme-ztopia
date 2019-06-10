@@ -47,6 +47,7 @@ const Preview: FunctionComponent<Props> = memo(
       ) => {
         const width = ref.style.width;
         if (width) {
+          console.log(width);
           setWidth(width);
         }
         const height = ref.style.height;
@@ -56,6 +57,11 @@ const Preview: FunctionComponent<Props> = memo(
       },
       [],
     );
+
+    const iFrameHeight =
+      height === 'auto'
+        ? 0
+        : parseInt(height) - HANDLE_BOTTOM_SIZE - CONTAINER_PADDING * 2;
 
     return (
       <Resizable
@@ -103,17 +109,7 @@ const Preview: FunctionComponent<Props> = memo(
         <div className={cx('container')}>
           {transpileError && <ErrorView>{transpileError}</ErrorView>}
           <ErrorBoundary>
-            <IFrame
-              height={
-                height === 'auto'
-                  ? 0
-                  : parseInt(height) -
-                    HANDLE_BOTTOM_SIZE -
-                    CONTAINER_PADDING * 2
-              }
-            >
-              {element}
-            </IFrame>
+            <IFrame height={iFrameHeight}>{element}</IFrame>
           </ErrorBoundary>
         </div>
         <div className={cx('action-bar')}>
