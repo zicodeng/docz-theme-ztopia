@@ -22,6 +22,13 @@ const external = id =>
   (!id.startsWith('.') && !id.startsWith('/') && !id.endsWith('css')) ||
   id.includes('ThemeContext');
 
+const onwarn = warning => {
+  if (warning.code === 'CIRCULAR_DEPENDENCY') {
+    return;
+  }
+  console.warn(`(!) ${warning.message}`);
+};
+
 const babelConfig = {
   extensions,
   include: ['./src/**'],
@@ -44,12 +51,7 @@ export default [
     input: './src/theme.tsx',
     output: { file: './dist/index.js', format: 'esm' },
     external,
-    onwarn: warning => {
-      if (warning.code === 'CIRCULAR_DEPENDENCY') {
-        return;
-      }
-      console.warn(`(!) ${warning.message}`);
-    },
+    onwarn,
     plugins: [
       !isDev && clean('dist'),
       replace({
@@ -82,12 +84,7 @@ export default [
     input: './src/ThemeContext.tsx',
     output: { file: './dist/ThemeContext.js', format: 'esm' },
     external,
-    onwarn: warning => {
-      if (warning.code === 'CIRCULAR_DEPENDENCY') {
-        return;
-      }
-      console.warn(`(!) ${warning.message}`);
-    },
+    onwarn,
     plugins: [
       replace({
         'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
