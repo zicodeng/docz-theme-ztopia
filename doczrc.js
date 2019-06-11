@@ -39,23 +39,40 @@ export default {
           test: /\.css$/,
           include: [path.resolve(__dirname, './example')],
           use: [
+            isDev
+              ? {
+                  // v0.23.1
+                  loader: 'style-loader',
+                  options: {
+                    // When source map is set to true,
+                    // CSS will be generated as stylesheet blobs.
+                    // This is required because we should always creates separate stylesheets for user styles
+                    // so that they will be injected properly in iframe mode.
+                    // Plus, you will want source map during development
+                    sourceMap: true,
+                  },
+                }
+              : {
+                  // v0.7.0
+                  loader: MiniCssExtractPlugin.loader,
+                },
             {
-              // Always creates separate stylesheets for user styles
-              // so that they will be injected properly in iframe mode
-              loader: MiniCssExtractPlugin.loader,
-            },
-            {
+              // v3.0.0
               loader: 'css-loader',
               options: {
                 importLoaders: 1,
-                sourceMap: true,
-                modules: true,
-                localIdentName: isDev
-                  ? '[name]__[local]--[hash:base64:5]'
-                  : '[hash:base64:5]',
+                // Only enable source map in development mode
+                sourceMap: isDev,
+                modules: {
+                  mode: 'local',
+                  localIdentName: isDev
+                    ? '[name]__[local]--[hash:base64:5]'
+                    : '[hash:base64:5]',
+                },
               },
             },
             {
+              // v3.0.0
               loader: 'postcss-loader',
             },
           ],
@@ -66,6 +83,7 @@ export default {
           include: [],
           use: [
             {
+              // v0.23.1
               // All vendors styles must be loaded in <style> tags
               loader: 'style-loader',
               options: {
@@ -73,6 +91,7 @@ export default {
               },
             },
             {
+              // v3.0.0
               loader: 'css-loader',
             },
           ],
