@@ -39,7 +39,9 @@ export default {
           include: [path.resolve(__dirname, './example')],
           use: [
             {
-              loader: isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+              // Always creates separate stylesheets for user styles
+              // so that they will be injected properly in iframe mode
+              loader: MiniCssExtractPlugin.loader,
             },
             {
               loader: 'css-loader',
@@ -63,7 +65,11 @@ export default {
           include: [],
           use: [
             {
-              loader: isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+              // All vendors styles must be loaded in <style> tags
+              loader: 'style-loader',
+              options: {
+                sourceMap: false,
+              },
             },
             {
               loader: 'css-loader',
