@@ -1,6 +1,5 @@
 .container {
   display: grid;
-  overflow: hidden;
   grid-template-areas:
     'header header header header'
     'sidebar main main main';
@@ -8,6 +7,7 @@
 }
 
 .content {
+  overflow: hidden;
   padding: $spacing-s 60px 60px;
   grid-area: main;
 }
