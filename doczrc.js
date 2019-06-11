@@ -3,6 +3,7 @@ import path from 'path';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserJSPlugin from 'terser-webpack-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+import FilterWarningsPlugin from 'webpack-filter-warnings-plugin';
 
 import pkg from './package.json';
 
@@ -98,6 +99,14 @@ export default {
       ...config.plugins,
       new MiniCssExtractPlugin({
         filename: 'static/css/[name].[hash].css',
+      }),
+      // Silence mini-css-extract-plugin generating lots of warnings for CSS ordering.
+      // We use CSS modules that should not care for the order of CSS imports, so we
+      // should be safe to ignore these
+      //
+      // See: https://github.com/webpack-contrib/mini-css-extract-plugin/issues/250
+      new FilterWarningsPlugin({
+        exclude: /mini-css-extract-plugin[^]*Conflicting order between:/,
       }),
     ],
   }),
