@@ -31,7 +31,6 @@ export default {
 // doczrc.js
 export default {
   ...
-  theme: 'docz-theme-ztopia',
   themeConfig: {
     colors: {
       blackLight: '#242635', // sidebar background (dark), table header background (dark), preview handle background (dark), <blockquote> background, <code> background
@@ -59,4 +58,129 @@ export default {
   },
   ...
 }
+```
+
+## Troubleshooting
+
+### Styles are missing in iframe mode?
+
+Since `<iframe>` renders components in **isolated browsing context**, this means
+styles defined in parent browsing context will not be available to components in `<iframe>`.
+To solve this problem, we need to manually copy styles over. However, a project could
+have hundreds of styles mixed with both vendor and user styles. How can we know which
+styles are user styles and should be copied to `<iframe>`. The answer is we do not know
+unless we explicitly distinguish between vendor and user styles. Fortunately,
+Webpack can help us with this. The following configuration tells Webpack to load
+all vendor styles in `<style>` tags and create separate external stylesheets for user styles.
+By doing this, we are confident that all styles in external stylesheets are user styles
+and should be copied over to `<iframe>`
+
+```javascript
+// doczrc.js
+export default {
+  ...
+  modifyBundlerConfig: (config, isDev) => ({
+    ...config,
+    module: {
+      ...config.module,
+      rules: [
+        ...config.module.rules,
+        // For loading user styles (using CSS modules)
+        {
+          test: /\.css$/,
+          include: [path.resolve(__dirname, './example')],
+          use: [
+            isDev
+              ? {
+                  // v0.23.1
+                  loader: 'style-loader',
+                  options: {
+                    // When source map is set to true,
+                    // CSS will be generated as stylesheet blobs.
+                    // This is required because we should always creates separate stylesheets for user styles
+                    // so that they will be injected properly in iframe mode.
+                    // Plus, you will want source map during development
+                    sourceMap: true,
+                  },
+                }
+              : {
+                  // v0.7.0
+                  loader: MiniCssExtractPlugin.loader,
+                },
+            {
+              // v3.0.0
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                // Only enable source map in development mode
+                sourceMap: isDev,
+                modules: {
+                  mode: 'local',
+                  localIdentName: isDev
+                    ? '[name]__[local]--[hash:base64:5]'
+                    : '[hash:base64:5]',
+                },
+              },
+            },
+            {
+              // v3.0.0
+              loader: 'postcss-loader',
+            },
+          ],
+        },
+        // For loading vendor styles (not using CSS modules)
+        {
+          test: /\.css$/,
+          include: [],
+          use: [
+            {
+              // v0.23.1
+              // All vendors styles must be loaded in <style> tags
+              loader: 'style-loader',
+              options: {
+                sourceMap: false,
+              },
+            },
+            {
+              // v3.0.0
+              loader: 'css-loader',
+            },
+          ],
+        },
+      ],
+    },
+    optimization: {
+      ...config.optimization,
+      minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+      splitChunks: {
+        ...config.optimization.splitChunks,
+        cacheGroups: {
+          ...config.optimization.splitChunks.cacheGroups,
+          styles: {
+            chunks: 'all',
+            name: 'styles',
+            test: module => /(\.module)?\.css$/.test(module.type),
+            enforce: true,
+          },
+        },
+      },
+    },
+    plugins: [
+      ...config.plugins,
+      new MiniCssExtractPlugin({
+        filename: 'static/css/[name].[hash].css',
+      }),
+      // Optional
+      // Silence mini-css-extract-plugin generating lots of warnings for CSS ordering.
+      // We use CSS modules that should not care for the order of CSS imports, so we
+      // should be safe to ignore these
+      // See: https://github.com/webpack-contrib/mini-css-extract-plugin/issues/250
+      new FilterWarningsPlugin({
+        exclude: /mini-css-extract-plugin[^]*Conflicting order between:/,
+      }),
+    ],
+  }),
+  ...
+}
+
 ```

@@ -119,6 +119,7 @@ export default {
       new MiniCssExtractPlugin({
         filename: 'static/css/[name].[hash].css',
       }),
+      // Optional
       // Silence mini-css-extract-plugin generating lots of warnings for CSS ordering.
       // We use CSS modules that should not care for the order of CSS imports, so we
       // should be safe to ignore these
