@@ -126,8 +126,5 @@
         "git add"
       ]
     }
-  },
-  "np": {
-    "contents": "dist"
   }
 }
