@@ -26,7 +26,7 @@ const renderDesc = (desc?: string): JSX.Element[] | string => {
   return fragments.map((fragment, i) => (
     <Fragment key={i}>
       {fragment}
-      <InlineCode>{matched[i].replace(/`/g, '')}</InlineCode>
+      {matched[i] && <InlineCode>{matched[i].replace(/`/g, '')}</InlineCode>}
     </Fragment>
   ));
 };
