@@ -12,10 +12,12 @@ import { terser } from 'rollup-plugin-terser';
 import copy from 'rollup-plugin-copy';
 import chalk from 'chalk';
 
+import pkg from './package.json';
+
 const NODE_ENV = process.env.NODE_ENV;
 const isDev = NODE_ENV === 'development';
 
-console.log(chalk.green(`Building bundle for ${NODE_ENV}...`));
+console.log(chalk.green(`Building ${pkg.name} for ${NODE_ENV}...`));
 
 // Remove previously built lib
 fs.removeSync('./dist');

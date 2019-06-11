@@ -13,7 +13,7 @@
     "build-prod": "NODE_ENV=production rollup -c",
     "clean": "rm -rf node_modules .docz yarn.lock",
     "release": "bump --commit && yarn build-prod && cd ./dist && yarn publish --non-interactive && cd ..",
-    "release-dryrun": "bump && yarn build-prod && cd ./dist && npm pack && cd ..",
+    "release-dryrun": "yarn build-prod && cd ./dist && npm pack && cd ..",
     "release-patch": "npm version patch && yarn pub",
     "release-minor": "npm version minor && yarn pub",
     "release-major": "npm version major && yarn pub",
