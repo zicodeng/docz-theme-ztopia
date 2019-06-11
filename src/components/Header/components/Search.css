@@ -32,6 +32,8 @@
   left: 0;
   width: 100%;
   padding: $spacing-l 30px;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .submenu {

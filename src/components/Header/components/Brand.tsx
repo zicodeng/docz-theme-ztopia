@@ -26,7 +26,7 @@ const Brand = () => {
       <img
         src={logo.src}
         className={cx('logo')}
-        style={{ width: logo.width }}
+        style={{ width: logo.width, marginLeft: -logo.width }}
       />
       <div className={cx('title-container')}>
         <H3>{title}</H3>

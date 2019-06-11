@@ -3,11 +3,11 @@
   width: 280px;
   height: 100%;
   align-items: center;
-  padding-left: 30px;
+  justify-content: center;
 }
 
 .logo {
-  margin-right: $spacing-m;
+  margin-right: $spacing-s;
   max-height: 100%;
 }
 

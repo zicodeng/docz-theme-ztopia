@@ -9,4 +9,5 @@
   line-height: $line-height-body;
   flex: 1;
   min-height: 170px;
+  overflow-y: auto;
 }

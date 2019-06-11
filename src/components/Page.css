@@ -1,5 +1,6 @@
 .container {
   display: grid;
+  overflow: hidden;
   grid-template-areas:
     'header header header header'
     'sidebar main main main';
