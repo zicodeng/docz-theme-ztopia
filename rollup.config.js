@@ -1,3 +1,5 @@
+import fs from 'fs-extra';
+
 import replace from 'rollup-plugin-replace';
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
@@ -10,12 +12,13 @@ import { terser } from 'rollup-plugin-terser';
 import copy from 'rollup-plugin-copy';
 import chalk from 'chalk';
 
-import clean from './scripts/rollup-plugin-clean';
-
 const NODE_ENV = process.env.NODE_ENV;
 const isDev = NODE_ENV === 'development';
 
 console.log(chalk.green(`Building bundle for ${NODE_ENV}...`));
+
+// Remove previously built lib
+fs.removeSync('./dist');
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
@@ -54,7 +57,6 @@ export default [
     external,
     onwarn,
     plugins: [
-      !isDev && clean('dist'),
       replace({
         'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
       }),
