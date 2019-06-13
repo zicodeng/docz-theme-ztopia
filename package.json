@@ -110,6 +110,11 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "linters": {
       "*.css": [
