@@ -1,3 +1,13 @@
 .heading {
-  margin: 40px 0 20px;
+  &--large {
+    margin: 40px 0 $spacing-l;
+  }
+
+  &--medium {
+    margin: 30px 0 $spacing-m;
+  }
+
+  &--small {
+    margin: $spacing-l 0 $spacing-s;
+  }
 }
