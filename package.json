@@ -9,11 +9,11 @@
   "scripts": {
     "start": "docz dev",
     "build-docs": "docz build && yarn create-200",
-    "build-dev": "NODE_ENV=development rollup -c --watch",
-    "build-prod": "NODE_ENV=production rollup -c",
+    "build:dev": "NODE_ENV=development rollup -c --watch",
+    "build:prod": "NODE_ENV=production rollup -c",
     "clean": "rm -rf node_modules .docz yarn.lock",
     "release": "bump --commit && yarn build-prod && cd ./dist && yarn publish --non-interactive && cd ..",
-    "release-dryrun": "yarn build-prod && cd ./dist && npm pack && cd ..",
+    "release:dryrun": "yarn build-prod && cd ./dist && npm pack && cd ..",
     "deploy": "yarn build-docs && surge --domain docz-theme-ztopia.surge.sh ./.docz/dist",
     "create-200": "cp ./.docz/dist/index.html ./.docz/dist/200.html"
   },
