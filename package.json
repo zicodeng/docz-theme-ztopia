@@ -49,7 +49,7 @@
     "classnames": "^2.2.6",
     "codemirror": "^5.47.0",
     "docz": "^1.2.0",
-    "lodash-es": "^4.17.11",
+    "lodash-es": "^4.17.14",
     "normalize.css": "^8.0.1",
     "prettier": "^1.17.1",
     "prop-types": "^15.7.2",
