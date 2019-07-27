@@ -101,13 +101,22 @@ export default [
       babel(babelConfig),
       progress({}),
       tslint(tslintConfig),
-      isDev
-        ? null
-        : copy({
-            targets: {
-              './package.json': './dist/package.json',
-            },
-          }),
+      copy({
+        targets: [
+          {
+            src: './README.md',
+            dest: './dist',
+          },
+          {
+            src: './package.json',
+            dest: './dist',
+          },
+          {
+            src: './public',
+            dest: './dist',
+          },
+        ],
+      }),
       isDev ? null : terser(),
     ],
   },
