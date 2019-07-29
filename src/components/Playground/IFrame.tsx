@@ -1,6 +1,7 @@
 import React, { useState, useEffect, FunctionComponent, Fragment } from 'react';
 import Frame from 'react-frame-component';
 import classNames from 'classnames/bind';
+import { LivePreview } from 'react-live';
 
 import Loader from '../Loader';
 
@@ -24,7 +25,7 @@ interface Props {
   height: number;
 }
 
-const IFrame: FunctionComponent<Props> = ({ height, children }) => {
+const IFrame: FunctionComponent<Props> = ({ height }) => {
   let timerId: NodeJS.Timeout | null = null;
 
   const ref = React.createRef<{ node: HTMLIFrameElement }>();
@@ -94,7 +95,7 @@ const IFrame: FunctionComponent<Props> = ({ height, children }) => {
         initialContent={INITIAL_CONTENT}
         contentDidMount={calcInitialHeight()}
       >
-        {children}
+        <LivePreview />
       </Frame>
     </Fragment>
   );

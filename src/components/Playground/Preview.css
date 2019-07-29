@@ -7,6 +7,22 @@
   min-height: 170px;
 }
 
+.error {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: $spacing-l;
+  margin: 0;
+  font-family: $font-family-code;
+  font-size: 85%;
+  line-height: $line-height-code;
+  flex: 1;
+  overflow-y: auto;
+}
+
 .action-bar {
   position: absolute;
   z-index: 1;
