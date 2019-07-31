@@ -17,13 +17,22 @@ const Playground: FunctionComponent<PlaygroundProps> = memo(
     const [isEditorOpen, setIsEditorOpen] = useState(false);
     const [isIFrameMode, setIsIFrameMode] = useState(false);
 
+    // Adjacent JSX elements must be wrapped in an enclosing tag
+    const transformCode = useCallback(
+      (code: string) => {
+        if (code.startsWith('()') || code.startsWith('class')) { return code; }
+        return `<>${code}</>`;
+      },
+      [code],
+    );
+
     const handleChange = useCallback((value: string) => {
       setValue(value);
     }, []);
 
     return (
       <section className={cx('container')}>
-        <LiveProvider code={value} scope={scope}>
+        <LiveProvider code={value} scope={scope} transformCode={transformCode}>
           <Preview
             isIFrameMode={isIFrameMode}
             actions={[
