@@ -10,7 +10,7 @@ import styles from './Props.css';
 
 const cx = classNames.bind(styles);
 
-const renderDesc = (desc?: string): JSX.Element[] | string => {
+const renderDesc = (desc: string): JSX.Element[] | string => {
   if (!desc) {
     return '';
   }
@@ -29,6 +29,20 @@ const renderDesc = (desc?: string): JSX.Element[] | string => {
       {matched[i] && <InlineCode>{matched[i].replace(/`/g, '')}</InlineCode>}
     </Fragment>
   ));
+};
+
+const parseDesc = (desc: string) => {
+  const splitDesc = desc.split(/\n/);
+  let parsedDesc = '';
+  let parsedDefaultVal = '';
+  splitDesc.forEach(text => {
+    if (text.includes('@default')) {
+      parsedDefaultVal = text.split('=')[1].replace(/(?!['"])[\W]/g, '');
+    } else {
+      parsedDesc += text;
+    }
+  });
+  return { parsedDefaultVal, parsedDesc };
 };
 
 const Props: FunctionComponent<PropsComponentProps> = ({ props }) => {
@@ -60,28 +74,31 @@ const Props: FunctionComponent<PropsComponentProps> = ({ props }) => {
       </thead>
       <tbody>
         {Object.entries(props).map(
-          ([name, { type, defaultValue, required, description }], i) => (
-            <tr
-              key={i}
-              style={{
-                borderBottom: `1px solid ${colors.grey}`,
-              }}
-            >
-              <td style={{ color: colors.primary }}>{name}</td>
-              <td className={cx('type')}>
-                <Type type={type} />
-              </td>
-              <td className={cx('default-value')}>
-                {defaultValue ? (
-                  <InlineCode>{defaultValue.value}</InlineCode>
-                ) : (
-                  '-'
-                )}
-              </td>
-              <td>{required ? 'true' : 'false'}</td>
-              <td className={cx('desc')}>{renderDesc(description)}</td>
-            </tr>
-          ),
+          ([name, { type, defaultValue, required, description }], i) => {
+            const { parsedDefaultVal, parsedDesc } = parseDesc(
+              description || '',
+            );
+            const defaultVal =
+              parsedDefaultVal || (defaultValue ? defaultValue.value : '');
+            return (
+              <tr
+                key={i}
+                style={{
+                  borderBottom: `1px solid ${colors.grey}`,
+                }}
+              >
+                <td style={{ color: colors.primary }}>{name}</td>
+                <td className={cx('type')}>
+                  <Type type={type} />
+                </td>
+                <td className={cx('default-value')}>
+                  {defaultVal ? <InlineCode>{defaultVal}</InlineCode> : '-'}
+                </td>
+                <td>{required ? 'true' : 'false'}</td>
+                <td className={cx('desc')}>{renderDesc(parsedDesc)}</td>
+              </tr>
+            );
+          },
         )}
       </tbody>
     </table>

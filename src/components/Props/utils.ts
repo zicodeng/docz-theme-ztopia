@@ -19,7 +19,7 @@ const parseShape = (value: PropValue): string => {
 export const parseType = (type: PropType): string => {
   const { name, value } = type;
   if (!value) {
-    return name;
+    return name.replace(/"/g, "'");
   }
   if (name === 'instanceOf') {
     return value;
