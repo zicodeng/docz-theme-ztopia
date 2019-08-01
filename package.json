@@ -53,9 +53,7 @@
     "prettier": "^1.17.1",
     "prop-types": "^15.7.2",
     "re-resizable": "^5.0.0",
-    "react": "^16.8.6",
     "react-codemirror2": "^6.0.0",
-    "react-dom": "^16.8.6",
     "react-frame-component": "^4.1.0",
     "react-live": "^2.1.2"
   },
@@ -106,9 +104,7 @@
     "webpack-filter-warnings-plugin": "^1.2.1"
   },
   "peerDependencies": {
-    "docz": "^1.2.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "docz": "^1.2.0"
   },
   "husky": {
     "hooks": {
