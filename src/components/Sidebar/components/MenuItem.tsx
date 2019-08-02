@@ -2,7 +2,7 @@ import React, { FunctionComponent, memo, useState } from 'react';
 import classNames from 'classnames/bind';
 import { Link, useConfig } from 'docz';
 
-import { useTheme } from '../../../ThemeContext';
+import { useTheme } from '../../../helpers';
 
 import styles from './Menu.css';
 

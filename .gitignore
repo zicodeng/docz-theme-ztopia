@@ -14,6 +14,8 @@ build
 dist
 tmp
 .docz
+.yalc
+yalc.lock
 
 # Dependency directories
 node_modules
@@ -21,6 +23,7 @@ bower_components
 
 # Cache
 .cache-loader
+.rpt2_cache
 
 # Misc
 .DS_Store

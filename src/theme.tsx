@@ -31,7 +31,7 @@ import {
   Page,
   NotFound,
 } from './components';
-import { ThemeProvider } from './ThemeContext';
+import { ThemeProvider } from './helpers';
 
 // Import global style
 import 'normalize.css';

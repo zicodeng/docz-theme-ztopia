@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import { useConfig } from 'docz';
 
-import { useTheme } from '../../ThemeContext';
+import { useTheme } from '../../helpers';
 
 import Menu from './components/Menu';
 import styles from './Sidebar.css';

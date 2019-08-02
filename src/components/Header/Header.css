@@ -14,9 +14,16 @@
   flex: 1;
   justify-content: flex-end;
   padding-right: 30px;
+}
+
+.button {
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
 
   > svg {
-    cursor: pointer;
     transition: $transition-fast;
   }
 }

@@ -1,0 +1,83 @@
+---
+name: Container
+menu: Components
+route: /components/container
+---
+
+import { Playground } from 'docz';
+
+import { Container } from '../dist/helpers';
+
+# Container
+
+`<Container>` is a helper component exported by this library. It comes in handy when you
+want to demonstrate multiple components in `<Playground>`
+
+## Usage
+
+```js
+import { Container } from 'docz-theme-ztopia/helpers';
+```
+
+## Demo
+
+### Without Container
+
+<Playground>
+  <div
+    style={{
+      width: 200,
+      height: 200,
+      backgroundColor: 'red',
+    }}
+  />
+  <div
+    style={{
+      width: 200,
+      height: 200,
+      backgroundColor: 'blue',
+    }}
+  />
+  <div
+    style={{
+      width: 200,
+      height: 200,
+      backgroundColor: 'green',
+    }}
+  />
+</Playground>
+
+### With Container
+
+<Playground>
+  <Container center>
+    <div
+      style={{
+        width: 200,
+        height: 200,
+        backgroundColor: 'red',
+      }}
+    />
+    <div
+      style={{
+        width: 200,
+        height: 200,
+        backgroundColor: 'blue',
+      }}
+    />
+    <div
+      style={{
+        width: 200,
+        height: 200,
+        backgroundColor: 'green',
+      }}
+    />
+  </Container>
+</Playground>
+
+## API
+
+| Property | Type   | Default | Required | Description                                                                  |
+| -------- | ------ | ------- | -------- | ---------------------------------------------------------------------------- |
+| center   | string | `false` | false    | Center all child elements both horizontally and vertically in `<Playground>` |
+| gap      | number | `10`    | false    | Spacing between child elements                                               |

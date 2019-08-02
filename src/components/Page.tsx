@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames/bind';
 import { PageProps, useConfig } from 'docz';
 
-import { useTheme } from '../ThemeContext';
+import { useTheme } from '../helpers';
 
 import Header from './Header';
 import Sidebar from './Sidebar';

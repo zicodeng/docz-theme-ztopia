@@ -8,8 +8,10 @@ import postcss from 'rollup-plugin-postcss';
 import url from 'rollup-plugin-url';
 import tslint from 'rollup-plugin-tslint';
 import progress from 'rollup-plugin-progress';
+import typescript2 from 'rollup-plugin-typescript2';
 import { terser } from 'rollup-plugin-terser';
 import copy from 'rollup-plugin-copy';
+import typescript from 'typescript';
 import chalk from 'chalk';
 
 import pkg from './package.json';
@@ -19,14 +21,14 @@ const isDev = NODE_ENV === 'development';
 
 console.log(chalk.green(`Building ${pkg.name} for ${NODE_ENV}...`));
 
-// Remove previously built lib
+// Remove previously built lib first
 fs.removeSync('./dist');
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
 const external = id =>
   (!id.startsWith('.') && !id.startsWith('/') && !id.endsWith('css')) ||
-  id.includes('ThemeContext');
+  id.includes('./helpers');
 
 const onwarn = warning => {
   if (warning.code === 'CIRCULAR_DEPENDENCY') {
@@ -35,72 +37,72 @@ const onwarn = warning => {
   console.warn(`(!) ${warning.message}`);
 };
 
-const babelConfig = {
-  extensions,
-  include: ['./src/**'],
-  presets: [
-    '@babel/preset-react',
-    '@babel/preset-typescript',
-    ['@babel/preset-env', { modules: false }],
-  ],
-  plugins: ['@babel/plugin-proposal-class-properties'],
-  babelrc: false,
-};
-
-const tslintConfig = {
-  configuration: './tslint.json',
-  include: [/\*.tsx?/],
-};
+const plugins = [
+  replace({
+    'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
+  }),
+  resolve({
+    extensions,
+  }),
+  url({
+    emitFiles: false,
+    limit: 5000 * 1024, // 5Mb
+  }),
+  commonjs({}),
+  babel({
+    extensions,
+    include: ['./src/**'],
+    presets: [
+      '@babel/preset-react',
+      '@babel/preset-typescript',
+      ['@babel/preset-env', { modules: false }],
+    ],
+    plugins: ['@babel/plugin-proposal-class-properties'],
+    babelrc: false,
+  }),
+  postcss({
+    modules: {
+      // CSS files that should not be transpiled and converted to CSS modules
+      globalModulePaths: [/node_modules/],
+      generateScopedName: isDev
+        ? '[name]__[local]--[hash:base64:5]'
+        : '[hash:base64:5]',
+    },
+  }),
+  progress({}),
+  tslint({
+    configuration: './tslint.json',
+    include: [/\*.tsx?/],
+  }),
+  isDev ? null : terser(),
+];
 
 export default [
   {
     input: './src/theme.tsx',
-    output: { file: './dist/index.js', format: 'cjs' },
+    output: { file: './dist/index.js', format: 'esm' },
     external,
     onwarn,
-    plugins: [
-      replace({
-        'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
-      }),
-      resolve({
-        extensions,
-      }),
-      url({
-        emitFiles: false,
-        limit: 5000 * 1024, // 5Mb
-      }),
-      commonjs({}),
-      babel(babelConfig),
-      postcss({
-        modules: {
-          // CSS files that should not be transpiled and converted to CSS modules
-          globalModulePaths: [/node_modules/],
-          generateScopedName: isDev
-            ? '[name]__[local]--[hash:base64:5]'
-            : '[hash:base64:5]',
-        },
-      }),
-      progress({}),
-      tslint(tslintConfig),
-      isDev ? null : terser(),
-    ],
+    plugins,
   },
   {
-    input: './src/ThemeContext.tsx',
-    output: { file: './dist/ThemeContext.js', format: 'cjs' },
+    input: './src/helpers/index.ts',
+    output: { file: './dist/helpers/index.js', format: 'esm' },
     external,
     onwarn,
     plugins: [
-      replace({
-        'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
+      typescript2({
+        typescript,
+        clean: true, // suppress (plugin rpt2) Error: Unknown object type "asyncfunction"
+        useTsconfigDeclarationDir: true,
+        tsconfigOverride: {
+          compilerOptions: {
+            declaration: true,
+            declarationDir: './dist',
+          },
+          include: ['./src/helpers/**/*'],
+        },
       }),
-      resolve({
-        extensions,
-      }),
-      commonjs({}),
-      babel(babelConfig),
-      progress({}),
-      tslint(tslintConfig),
       copy({
         targets: [
           {
@@ -117,7 +119,7 @@ export default [
           },
         ],
       }),
-      isDev ? null : terser(),
+      ...plugins,
     ],
   },
 ];

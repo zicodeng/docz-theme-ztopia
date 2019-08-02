@@ -3,7 +3,7 @@ import className from 'classnames/bind';
 import { useConfig } from 'docz';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { useTheme } from '../../ThemeContext';
+import { useTheme } from '../../helpers';
 
 import Brand from './components/Brand';
 import Search from './components/Search';
@@ -22,14 +22,14 @@ const Header: FunctionComponent = () => {
       className={cx('container')}
       style={{
         backgroundColor:
-          theme == 'light' ? colors.whiteDark : colors.blackLight,
+          theme === 'light' ? colors.whiteDark : colors.blackLight,
       }}
     >
       <Brand />
       <Search />
       <div className={cx('buttons')}>
-        <FontAwesomeIcon
-          icon={[theme === 'light' ? 'far' : 'fas', 'lightbulb']}
+        <button
+          className={cx('button')}
           style={{
             color: isHovered ? colors.primary : 'inherit',
           }}
@@ -40,7 +40,11 @@ const Header: FunctionComponent = () => {
           onMouseLeave={() => {
             setIsHovered(false);
           }}
-        />
+        >
+          <FontAwesomeIcon
+            icon={[theme === 'light' ? 'far' : 'fas', 'lightbulb']}
+          />
+        </button>
       </div>
     </header>
   );

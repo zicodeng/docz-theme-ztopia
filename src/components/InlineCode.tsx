@@ -2,7 +2,8 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames/bind';
 import { useConfig } from 'docz';
 
-import { useTheme } from '../ThemeContext';
+import { useTheme } from '../helpers';
+
 import styles from './InlineCode.css';
 
 const cx = classNames.bind(styles);

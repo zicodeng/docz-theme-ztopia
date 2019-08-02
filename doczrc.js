@@ -24,7 +24,7 @@ export default {
   /** Control menu order */
   menu: [
     { name: 'Docs', menu: ['Introduction', 'Getting Started', 'Design'] },
-    { name: 'Components', menu: ['Button'] },
+    { name: 'Components' },
   ],
   filterComponents: files =>
     files.filter(file => /([^d]\.(t|j)sx?)$/.test(file)),
