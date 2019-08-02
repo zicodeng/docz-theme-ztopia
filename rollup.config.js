@@ -80,7 +80,7 @@ const plugins = [
 export default [
   {
     input: './src/theme.tsx',
-    output: { file: './dist/index.js', format: 'esm' },
+    output: { file: './dist/index.js', format: 'cjs' },
     external,
     onwarn,
     plugins,
