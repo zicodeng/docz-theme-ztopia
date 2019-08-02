@@ -12,9 +12,9 @@ export const Container: FC<ContainerProps> = memo(
     } = {
       display: 'flex',
       flexWrap: 'wrap',
+      alignItems: 'center',
     };
     if (center) {
-      style.alignItems = 'center';
       style.justifyContent = 'center';
     }
     return (
