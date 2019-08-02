@@ -1,4 +1,9 @@
 import React, { FC, memo, Children, cloneElement, isValidElement } from 'react';
+import classNames from 'classnames/bind';
+
+import styles from './Container.css';
+
+const cx = classNames.bind(styles);
 
 export interface ContainerProps {
   center?: boolean;
@@ -18,7 +23,7 @@ export const Container: FC<ContainerProps> = memo(
       style.justifyContent = 'center';
     }
     return (
-      <section style={style}>
+      <section style={style} className={cx('content')}>
         {Children.map(children, child =>
           isValidElement(child)
             ? cloneElement(child, {

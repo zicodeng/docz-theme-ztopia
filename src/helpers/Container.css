@@ -1,0 +1,5 @@
+.content {
+  > * {
+    margin: $spacing-s;
+  }
+}
