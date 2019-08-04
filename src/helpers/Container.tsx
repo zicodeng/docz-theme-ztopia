@@ -6,12 +6,12 @@ import styles from './Container.css';
 const cx = classNames.bind(styles);
 
 export interface ContainerProps {
-  center?: boolean;
+  centered?: boolean;
   gap?: number;
 }
 
 export const Container: FC<ContainerProps> = memo(
-  ({ center, gap, children }) => {
+  ({ centered, gap, children }) => {
     const style: {
       [key: string]: string;
     } = {
@@ -19,7 +19,7 @@ export const Container: FC<ContainerProps> = memo(
       flexWrap: 'wrap',
       alignItems: 'center',
     };
-    if (center) {
+    if (centered) {
       style.justifyContent = 'center';
     }
     return (
@@ -40,6 +40,6 @@ export const Container: FC<ContainerProps> = memo(
 );
 
 Container.defaultProps = {
-  center: false,
+  centered: false,
   gap: 10,
 };
