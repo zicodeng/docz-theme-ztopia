@@ -37,7 +37,7 @@ const parseDesc = (desc: string) => {
   let parsedDefaultVal = '';
   splitDesc.forEach(text => {
     if (text.includes('@default')) {
-      parsedDefaultVal = text.split('=')[1].replace(/(?!['"-])[\W]/g, '');
+      parsedDefaultVal = text.split('=')[1].replace(/[`<>]/g, '');
     } else {
       parsedDesc += text;
     }
@@ -76,7 +76,9 @@ const Props: FunctionComponent<PropsComponentProps> = ({ props }) => {
         {Object.entries(props).map(
           ([name, { type, defaultValue, required, description }], i) => {
             // Ignore <@internal> prop
-            if (description && description.includes('<@internal>')) { return null; }
+            if (description && description.includes('<@internal>')) {
+              return null;
+            }
 
             const { parsedDefaultVal, parsedDesc } = parseDesc(
               description || '',
