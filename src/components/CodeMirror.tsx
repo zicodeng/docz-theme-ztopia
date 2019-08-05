@@ -1,4 +1,4 @@
-import React, { useCallback, useState, FunctionComponent } from 'react';
+import React, { useCallback, useState, FunctionComponent, memo } from 'react';
 import classNames from 'classnames/bind';
 import { get } from 'lodash-es';
 import { Controlled as BaseCodeMirror } from 'react-codemirror2';
@@ -34,7 +34,7 @@ const getLanguage = children => {
   }
 
   // className will look like this `language-jsx`
-  const className = get(children, 'props.props.className') || defaultLanguage;
+  const className = get(children, 'props.className') || defaultLanguage;
   const language = className.replace('language-', '');
 
   if (language === 'js' || language === 'javascript') {
@@ -55,66 +55,64 @@ interface Props {
   onChange?: (value: string) => void;
 }
 
-const CodeMirror: FunctionComponent<Props> = ({
-  readOnly = true,
-  className,
-  language = 'jsx',
-  code,
-  onChange,
-  children,
-}) => {
-  if (!readOnly && (!onChange || typeof code === 'undefined' || code == null)) {
-    throw new Error(
-      'Prop onChange and code are required when readOnly is set to false',
-    );
-  }
-
-  const initialValue = getChildren(children) as string;
-  const mode = language || getLanguage(children);
-
-  const [value, setValue] = useState(initialValue);
-
-  const removeLastLine = editor => {
-    if (!editor) {
-      return;
+const CodeMirror: FunctionComponent<Props> = memo(
+  ({ readOnly = true, className, language, code, onChange, children }) => {
+    if (
+      !readOnly &&
+      (!onChange || typeof code === 'undefined' || code === null)
+    ) {
+      throw new Error(
+        'Prop onChange and code are required when readOnly is set to false',
+      );
     }
-    const lastLine = editor.lastLine();
-    const lastLineValue = editor.getLine(lastLine);
-    if (!lastLineValue) {
-      editor.doc.replaceRange('', { line: lastLine - 1 }, { line: lastLine });
-    }
-  };
-  const handleBeforeChange = useCallback(
-    (_editor, _data, value) => {
-      if (onChange) {
-        onChange(value);
-      } else {
-        setValue(value);
+
+    const initialValue = getChildren(children) as string;
+    const mode = language || getLanguage(children);
+
+    const [value, setValue] = useState(initialValue);
+
+    const removeLastLine = editor => {
+      if (!editor) {
+        return;
       }
-    },
-    [value],
-  );
+      const lastLine = editor.lastLine();
+      const lastLineValue = editor.getLine(lastLine);
+      if (!lastLineValue) {
+        editor.doc.replaceRange('', { line: lastLine - 1 }, { line: lastLine });
+      }
+    };
+    const handleBeforeChange = useCallback(
+      (_editor, _data, value) => {
+        if (onChange) {
+          onChange(value);
+        } else {
+          setValue(value);
+        }
+      },
+      [value],
+    );
 
-  return (
-    <BaseCodeMirror
-      value={readOnly ? value : (code as string)}
-      className={cx(className, 'container')}
-      editorDidMount={editor => {
-        removeLastLine(editor);
-      }}
-      onBeforeChange={handleBeforeChange}
-      options={{
-        tabSize: 2,
-        lineNumbers: true,
-        lineWrapping: false,
-        autoCloseTags: true,
-        matchBrackets: true,
-        readOnly,
-        theme: 'monokai',
-        mode,
-      }}
-    />
-  );
-};
+    return (
+      <BaseCodeMirror
+        value={readOnly ? value : (code as string)}
+        className={cx(className, 'container')}
+        editorDidMount={editor => {
+          removeLastLine(editor);
+        }}
+        onBeforeChange={handleBeforeChange}
+        options={{
+          tabSize: 2,
+          lineNumbers: true,
+          lineWrapping: false,
+          autoCloseTags: true,
+          matchBrackets: true,
+          readOnly,
+          theme: 'monokai',
+          mode,
+        }}
+      />
+    );
+  },
+);
 
 export default CodeMirror;
