@@ -1,4 +1,11 @@
-import React, { FC, memo, Children, cloneElement, isValidElement } from 'react';
+import React, {
+  FC,
+  memo,
+  Children,
+  cloneElement,
+  isValidElement,
+  CSSProperties,
+} from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Container.css';
@@ -8,22 +15,22 @@ const cx = classNames.bind(styles);
 export interface ContainerProps {
   centered?: boolean;
   gap?: number;
+  style?: CSSProperties;
 }
 
 export const Container: FC<ContainerProps> = memo(
-  ({ centered, gap, children }) => {
-    const style: {
-      [key: string]: string;
-    } = {
+  ({ centered, gap, style, children }) => {
+    const newStyle: CSSProperties = {
       display: 'flex',
       flexWrap: 'wrap',
       alignItems: 'center',
+      ...style,
     };
     if (centered) {
-      style.justifyContent = 'center';
+      newStyle.justifyContent = 'center';
     }
     return (
-      <section style={style} className={cx('content')}>
+      <section style={newStyle} className={cx('content')}>
         {Children.map(children, child =>
           isValidElement(child)
             ? cloneElement(child, {
@@ -42,4 +49,5 @@ export const Container: FC<ContainerProps> = memo(
 Container.defaultProps = {
   centered: false,
   gap: 10,
+  style: {},
 };
