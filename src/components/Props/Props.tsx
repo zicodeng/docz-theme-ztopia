@@ -37,7 +37,10 @@ const parseDesc = (desc: string) => {
   let parsedDefaultVal = '';
   splitDesc.forEach(text => {
     if (text.includes('@default')) {
-      parsedDefaultVal = text.split('=')[1].replace(/[`<>]/g, '');
+      parsedDefaultVal = text
+        .substring(1, text.length - 1)
+        .split('=')[1]
+        .replace(/`/g, '');
     } else {
       parsedDesc += text;
     }
