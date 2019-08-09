@@ -1,4 +1,6 @@
 .content {
+  position: relative;
+
   > * {
     margin: $spacing-s;
   }
