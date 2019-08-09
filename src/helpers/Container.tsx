@@ -13,20 +13,20 @@ import styles from './Container.css';
 const cx = classNames.bind(styles);
 
 export interface ContainerProps {
-  centered?: boolean;
+  isCentered?: boolean;
   gap?: number;
   style?: CSSProperties;
 }
 
 export const Container: FC<ContainerProps> = memo(
-  ({ centered, gap, style, children }) => {
+  ({ isCentered, gap, style, children }) => {
     const newStyle: CSSProperties = {
       display: 'flex',
       flexWrap: 'wrap',
       alignItems: 'center',
       ...style,
     };
-    if (centered) {
+    if (isCentered) {
       newStyle.justifyContent = 'center';
     }
     return (
@@ -47,7 +47,7 @@ export const Container: FC<ContainerProps> = memo(
 );
 
 Container.defaultProps = {
-  centered: false,
+  isCentered: false,
   gap: 10,
   style: {},
 };
