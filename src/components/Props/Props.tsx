@@ -42,7 +42,7 @@ const parseDesc = (desc: string) => {
         .split('=')[1]
         .replace(/`/g, '');
     } else {
-      parsedDesc += text;
+      parsedDesc += ' ' + text;
     }
   });
   return { parsedDefaultVal, parsedDesc };

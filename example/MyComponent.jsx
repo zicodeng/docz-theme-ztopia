@@ -106,13 +106,15 @@ MyComponent.propTypes = {
   /**
    * <@default=`'docz-theme-ztopia'`>
    *
-   * This is especially useful when your components are written in TypeScript, and Docz is not able to parse `MyComponent.defaultProps`
+   * This is especially useful when your components are written in TypeScript,
+   * and Docz is not able to parse `MyComponent.defaultProps`
    */
   customDefault: PropTypes.string,
   /**
    * <@internal>
    *
-   * Use this special syntax when your prop is only used internally by other components and should not be displayed in props table
+   * Use this special syntax when your prop is only used internally
+   * by other components and should not be displayed in props table
    */
   internalProp: PropTypes.string,
 };
