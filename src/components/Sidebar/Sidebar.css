@@ -1,9 +1,9 @@
 .container {
   position: sticky;
   top: 60px;
+  grid-area: sidebar;
   width: 280px;
   height: calc(100vh - 60px);
   padding: $spacing-l 0;
-  grid-area: sidebar;
   overflow-y: auto;
 }

@@ -7,7 +7,7 @@
 }
 
 .content {
-  overflow: hidden;
-  padding: $spacing-s 60px 60px;
   grid-area: main;
+  padding: $spacing-s 60px 60px;
+  overflow: hidden;
 }

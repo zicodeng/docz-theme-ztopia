@@ -3,12 +3,12 @@
   top: 0;
   left: 50%;
   width: auto;
-  margin-top: 10px;
   min-width: 250px;
-  opacity: 0;
+  margin-top: 10px;
   transform: translate(-50%, -100%);
-  transition: $transition-fast;
   visibility: hidden;
+  opacity: 0;
+  transition: $transition-fast;
 }
 
 .container {
@@ -18,8 +18,8 @@
   &:hover {
     > .value {
       margin-top: 0;
-      opacity: 1;
       visibility: visible;
+      opacity: 1;
     }
   }
 }

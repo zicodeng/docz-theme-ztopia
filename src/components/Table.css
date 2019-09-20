@@ -4,8 +4,8 @@
 
   th {
     padding: $spacing-s;
-    border: 1px solid currentColor;
     text-align: center;
+    border: 1px solid currentColor;
   }
 
   td {

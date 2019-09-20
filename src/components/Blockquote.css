@@ -1,6 +1,6 @@
 .quote {
-  padding: $spacing-s $spacing-l;
   margin: $spacing-l 0;
+  padding: $spacing-s $spacing-l;
 
   > p {
     margin: 0;

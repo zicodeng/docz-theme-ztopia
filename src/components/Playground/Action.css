@@ -1,13 +1,13 @@
 .button {
   display: flex;
+  align-items: center;
+  justify-content: center;
   width: 30px;
   padding: 0 $spacing-xs;
-  border: 0;
   font-size: $font-size-s;
-  cursor: pointer;
-  align-items: center;
   background-color: transparent;
-  justify-content: center;
+  border: 0;
   outline: none;
+  cursor: pointer;
   transition: $transition-fast;
 }

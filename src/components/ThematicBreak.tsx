@@ -15,9 +15,7 @@ const ThematicBreak: FunctionComponent = props => {
       {...props}
       className={cx('hr')}
       style={{
-        background: `linear-gradient(to right, ${colors.primary}, ${
-          colors.secondary
-        })`,
+        background: `linear-gradient(to right, ${colors.primary}, ${colors.secondary})`,
       }}
     />
   );

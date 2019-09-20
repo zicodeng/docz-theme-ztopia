@@ -1,27 +1,27 @@
 .container {
   position: sticky;
-  z-index: 99;
   top: 0;
+  z-index: 99;
   display: flex;
-  height: 60px;
-  align-items: center;
   grid-area: header;
+  align-items: center;
+  height: 60px;
 }
 
 .buttons {
   display: flex;
-  font-size: $font-size-xl;
   flex: 1;
   justify-content: flex-end;
   padding-right: 30px;
+  font-size: $font-size-xl;
 }
 
 .button {
   padding: 0;
-  border: 0;
-  cursor: pointer;
   background-color: transparent;
+  border: 0;
   outline: none;
+  cursor: pointer;
 
   > svg {
     transition: $transition-fast;

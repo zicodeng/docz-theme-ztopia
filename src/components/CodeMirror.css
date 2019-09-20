@@ -1,22 +1,22 @@
 .container {
   position: relative;
-  line-height: $line-height-code;
   flex: 1;
+  line-height: $line-height-code;
 
   pre {
-    font-family: $font-family-code;
     font-size: 85%;
+    font-family: $font-family-code;
   }
 
   :global {
     .CodeMirror {
-      height: auto;
       max-width: 100%;
+      height: auto;
     }
 
     .CodeMirror-scroll {
-      overflow: scroll;
       max-height: 500px;
+      overflow: scroll;
     }
 
     .CodeMirror-gutters {

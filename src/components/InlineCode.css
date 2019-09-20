@@ -1,7 +1,7 @@
 .code {
   padding: 4px 6px;
-  font-family: $font-family-code;
   font-size: 85%;
+  font-family: $font-family-code;
   line-height: $line-height-code;
   border-radius: 4px;
 }

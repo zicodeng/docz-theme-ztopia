@@ -88,9 +88,7 @@ const Search = () => {
       <ul
         className={cx('result')}
         style={{
-          background: `linear-gradient(to right, ${colors.primary}, ${
-            colors.secondary
-          })`,
+          background: `linear-gradient(to right, ${colors.primary}, ${colors.secondary})`,
           color: colors.whiteLight,
         }}
       >

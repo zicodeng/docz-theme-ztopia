@@ -1,14 +1,14 @@
 .container {
   display: flex;
-  width: 280px;
-  height: 100%;
   align-items: center;
   justify-content: center;
+  width: 280px;
+  height: 100%;
 }
 
 .logo {
-  margin-right: $spacing-s;
   max-height: 100%;
+  margin-right: $spacing-s;
 }
 
 .title-container {
