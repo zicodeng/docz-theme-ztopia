@@ -9,7 +9,6 @@ import url from 'rollup-plugin-url';
 import progress from 'rollup-plugin-progress';
 import typescript2 from 'rollup-plugin-typescript2';
 import { terser } from 'rollup-plugin-terser';
-import copy from 'rollup-plugin-copy';
 import typescript from 'typescript';
 import chalk from 'chalk';
 
@@ -97,22 +96,6 @@ export default [
           },
           include: ['./src/helpers/**/*'],
         },
-      }),
-      copy({
-        targets: [
-          {
-            src: './README.md',
-            dest: './dist',
-          },
-          {
-            src: './package.json',
-            dest: './dist',
-          },
-          {
-            src: './public',
-            dest: './dist',
-          },
-        ],
       }),
       ...plugins,
     ],

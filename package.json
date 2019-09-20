@@ -11,9 +11,10 @@
     "build-docs": "docz build && yarn create-200",
     "build:dev": "NODE_ENV=development rollup -c --watch",
     "build:prod": "NODE_ENV=production rollup -c",
+    "post-build": "cp -a ./public ./dist/public && cp ./package.json ./dist/package.json && cp ./README.md ./dist/README.md",
     "clean": "rm -rf node_modules .docz yarn.lock",
-    "release": "yarn build:prod && bump --commit && cd ./dist && yarn publish --non-interactive && cd ..",
-    "release:dryrun": "yarn build:prod && cd ./dist && npm pack && cd ..",
+    "release": "yarn build:prod && bump --commit && yarn post-build && cd ./dist && yarn publish --non-interactive && cd ..",
+    "release:dryrun": "yarn build:prod && yarn post-build && cd ./dist && npm pack && cd ..",
     "deploy": "yarn build-docs && surge --domain docz-theme-ztopia.surge.sh ./.docz/dist",
     "create-200": "cp ./.docz/dist/index.html ./.docz/dist/200.html",
     "format:all": "prettier --write \"**/*.{js,jsx,ts,tsx,css,json,yml,md}\" --ignore-path ./.prettierignore && stylelint --fix \"./src/**/*.css\""
