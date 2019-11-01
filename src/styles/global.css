@@ -3,7 +3,6 @@
 /*=======================================
 =            Reset Box Model            =
 =======================================*/
-
 html {
   box-sizing: border-box;
 }
@@ -13,5 +12,4 @@ html {
 *::after {
   box-sizing: inherit;
 }
-
 /*=====  End of Reset Box Model  ======*/

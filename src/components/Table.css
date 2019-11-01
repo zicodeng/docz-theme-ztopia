@@ -1,7 +1,7 @@
 .table {
   line-height: $line-height-body;
+  word-break: normal;
   border-collapse: collapse;
-  word-break: initial;
 
   th {
     padding: $spacing-s;

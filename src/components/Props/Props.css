@@ -1,6 +1,7 @@
 .table {
   width: 100%;
   line-height: $line-height-body;
+  word-break: normal;
   border-collapse: collapse;
 
   thead {
