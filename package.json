@@ -52,7 +52,7 @@
     "docz": "^1.2.0",
     "lodash-es": "^4.17.14",
     "normalize.css": "^8.0.1",
-    "prettier": "^1.17.1",
+    "prettier": "^2.2.1",
     "prop-types": "^15.7.2",
     "re-resizable": "^5.0.0",
     "react-codemirror2": "^6.0.0",
@@ -116,7 +116,8 @@
   "peerDependencies": {
     "docz": "^1.2.0",
     "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react-dom": "^16.14.0",
+    "prettier": "^2.2.1"
   },
   "husky": {
     "hooks": {
