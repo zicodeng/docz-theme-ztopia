@@ -114,7 +114,9 @@
     "webpack-filter-warnings-plugin": "^1.2.1"
   },
   "peerDependencies": {
-    "docz": "^1.2.0"
+    "docz": "^1.2.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "husky": {
     "hooks": {
